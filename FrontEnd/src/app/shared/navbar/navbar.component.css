@@ -1,0 +1,23 @@
+.nav__list {
+	list-style-type: none;
+	display: flex;
+	flex-flow: row wrap;
+	font-size: 2rem;
+	padding: 1rem;
+	background-color: var(--color-dark-blue);
+}
+
+.nav__list--link {
+	text-decoration: none;
+	color: var(--color-primary-white);
+	padding: 1rem 2rem;
+}
+
+.nav__list--item:first-child {
+	font-weight: 400;
+	margin-right: auto;
+}
+
+.nav__list--item:not(:first-child):not(:last-child) {
+	margin-right: 1rem;
+}

@@ -1,0 +1,40 @@
+.kpis {
+	color: var(--color-light-blue);
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: space-around;
+	align-items: center;
+	margin-bottom: 2rem;
+}
+
+.kpi__card {
+	background-color: var(--color-primary-white);
+	box-shadow: 0 .5rem 1rem 0 var(--color-light-black);
+	flex: 1;
+	text-align: center;
+	padding: 1rem 2rem;
+}
+
+.kpi__card:hover {
+	transform: translateY(-.1rem);
+	box-shadow: 0 1rem 2rem 0 var(--color-light-black);
+}
+
+.kpi__card:not(:last-child) {
+	margin-right: 1rem;
+}
+
+.kpi__card--header {
+	font-size: 1.75rem;
+	font-weight: 400;
+	text-transform: uppercase;
+}
+
+.kpi__card--num {
+	font-size: 2.5rem;
+	font-weight: 400;
+}
+
+.kpi__card--footer {
+	font-size: 1.5rem;
+}

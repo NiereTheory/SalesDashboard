@@ -1,0 +1,46 @@
+<div class="tables">
+	<div class="table__div">
+		<h2 class="table__header">My Recent Sales</h2>
+		<div class="tbl__wrapper">
+			<table class="table">
+				<thead>
+					<tr class="tbl__row tbl__row--header">
+						<th class="tbl__th">Sales Rep</th>
+						<th class="tbl__th">Region</th>
+						<th class="tbl__th">Sale Amount</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr class="tbl__row tbl__row--data" *ngFor="let sale of mysales">
+						<td>{{ sale.name }}</td>
+						<td>{{ sale.region }}</td>
+						<td>{{ sale.amt | currency:'USD':'symbol':'1.0-0' }}</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
+	</div>
+
+	<div class="table__div">
+		<h2 class="table__header">Top Sales</h2>
+		<div class="tbl__wrapper">
+			<table class="table">
+				<thead>
+					<tr class="tbl__row tbl__row--header">
+						<th class="tbl__th">Sales Rep</th>
+						<th class="tbl__th">Region</th>
+						<th class="tbl__th">Sale Amount</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr class="tbl__row tbl__row--data" *ngFor="let sale of topsales">
+						<td>{{ sale.name }}</td>
+						<td>{{ sale.region }}</td>
+						<td>{{ sale.amt | currency:'USD':'symbol':'1.0-0' }}</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>

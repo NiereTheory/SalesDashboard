@@ -1,0 +1,24 @@
+.chart {
+	display: flex;
+	flex-flow: row wrap;
+	color: var(--color-light-blue);
+	margin-bottom: 2rem;
+}
+
+.graph {
+	max-width: 100vh;
+	flex: 1;
+	background-color: var(--color-primary-white);
+	box-shadow: 0 .5rem 1rem 0 var(--color-light-black);
+}
+
+.graph:not(:last-child) {
+	margin-right: 2rem;
+}
+
+.graph--header {
+	font-size: 1.75rem;
+	font-weight: 400;
+	text-transform: uppercase;
+	padding-left: .5rem;
+}

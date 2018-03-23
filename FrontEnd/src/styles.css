@@ -1,0 +1,41 @@
+/* You can add global styles to this file, and also import other style files */
+
+:root {
+	--color-primary-white: #fff;
+	--color-primary-black: #00171f;
+	--color-primary-orange: #ef6461;
+	--color-primary-grey: #eee;
+	--color-light-blue: #00a8e8;
+	--color-dark-blue: #003459;
+	--color-light-black: rgba(0, 0, 0, .2);
+	--color-primary-green: #28a745;
+	--color-primary-red: #dc3545;
+}
+* {
+	margin: 0;
+	padding: 0;
+}
+*, *::after, *::after {
+	box-sizing: inherit;
+}
+html {
+	box-sizing: border-box;
+	font-size: 62.5%;
+}
+body {
+	font-family: 'Source Sans Pro', "Segoe UI", sans-serif;
+	font-weight: 200;
+	line-height: 1.6;
+	color: var(—color-primary);
+	background-color: var(--color-primary-grey);
+	max-width: 1200px;
+	margin: 0 auto;
+}
+
+.pos {
+	color: var(--color-primary-green);
+}
+
+.neg {
+	color: var(--color-primary-red);
+}
