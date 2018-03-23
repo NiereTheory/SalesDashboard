@@ -1,8 +1,8 @@
-#PROJECT OVERVIEW
+# PROJECT OVERVIEW
 This repo is designed to implement a simple full stack application using Oracle, Node, Express, and Angular.
 
-##PREPARATION
-###SOFTWARE
+## PREPARATION
+### SOFTWARE
 Download Oracle Instant Client Basic from Oracle and moved all files in folder to /usr/local/lib (note that I am on Mac)
 Download SQL Developer - just a way to interact with the Oracle database
 Download docker - we'll be using a simple database image from docker
@@ -10,14 +10,14 @@ Download node and install nodemon, live-server, and the angular cli
 Use your favorite code editor
 Have a terminal tool (even on with a code editor) as we'll likely have various processes running
 
-###SETUP
+### SETUP
 <!--- I used AWS to spin up an oracledb that has a security group to allow inbound 1521 --->
 Use docker to spin up this OracleDB instance: https://hub.docker.com/r/sath89/oracle-xe-11g/
 Container started with:
 > docker run -d -p 8080:8080 -p 1521:1521 --name oracledb -v /Users/benniere/Projects/Node/OraTest/Data sath89/oracle-xe-11g
 
-#DEVELOPMENT
-##BACK END
+# DEVELOPMENT
+## BACK END
 Connect to the DB instance endpoint via SQL Developer and create tables, 2 users (one for just web calls and the other for creating the DB objects), and a simple package
 Ensure the web user has access to the package created by the other user, as we'll be performing db operations that way
 
@@ -32,7 +32,7 @@ Used Postman to validate routes (CRD) at this point
 
 Key folder to view at this point would be /SQL and /BackEnd/routes
 
-##FRONT END
+## FRONT END
 Feel free to create a quick POC to ensure everything looks OK at this point. I made a single /FrontEnd/POC/ index file using Vue to ensure I could consume the API...
 
 Use ng new to get an Angular 5 project created
