@@ -13,12 +13,12 @@ router.get('/', async (req, res) => {
 	let conn;
 	try {
 		conn = await oracledb.getConnection(connection);
-		let result = await conn.execute(
+		let rows = await conn.execute(
 			'BEGIN SALES.PKG_SALES.prc_sel_sales(:cursor); END;',
 			{ cursor: { type: oracledb.CURSOR, dir: oracledb.BIND_OUT } }
 		);
-		response = await result.outBinds.cursor.getRows(maxRows);
-		res.status(200).send(JSON.stringify(response));
+		sales = await rows.outBinds.cursor.getRows(maxRows);
+		res.status(200).send({sales});
 	} catch (err) {
 		res.status(500).send(jsonError);
 	} finally {
@@ -32,15 +32,15 @@ router.get('/:id', async (req, res) => {
 	let conn;
 	try {
 		conn = await oracledb.getConnection(connection);
-		let result = await conn.execute(
+		let row = await conn.execute(
 			'BEGIN SALES.PKG_SALES.prc_sel_sale(:id, :cursor); END;',
 			{
-				cursor: { type: oracledb.CURSOR, dir: oracledb.BIND_OUT },
-				id: req.params.id
+				id: req.params.id,
+				cursor: { type: oracledb.CURSOR, dir: oracledb.BIND_OUT }
 			}
 		);
-		response = await result.outBinds.cursor.getRows(1);
-		res.status(200).send(JSON.stringify(response));
+		sale = await row.outBinds.cursor.getRows(1);
+		res.status(200).send(JSON.stringify(sale));
 	} catch (err) {
 		res.status(500).send(jsonError);
 	} finally {
@@ -54,18 +54,18 @@ router.post('/', async (req, res) => {
 	let conn;
 	try {
 		conn = await oracledb.getConnection(connection);
-		let InvoiceID = req.body.InvoiceID;
-		let SaleAmount = req.body.SaleAmount;
-		console.log(req.body);
-		let result = await conn.execute(
-			'BEGIN SALES.PKG_SALES.prc_add_sale(:invoiceid, :saleamount, :createdID); END;',
+		let row = await conn.execute(
+			'BEGIN SALES.PKG_SALES.prc_add_sale(:region, :employee, :product, :quantity, :dollars, :createdID); END;',
 			{
-				invoiceid: { val: InvoiceID },
-				saleamount: { val: SaleAmount },
+				region: req.body.Region,
+				employee: req.body.Employee,
+				product: req.body.Product,
+				quantity: req.body.Quantity,
+				dollars: req.body.Dollars,
 				createdID: { type: oracledb.NUMBER, dir: oracledb.BIND_OUT }
 			}
 		);
-		response = await result.outBinds;
+		response = await row.outBinds;
 		res.status(200).send(JSON.stringify(response));
 	} catch (err) {
 		res.status(500).send(jsonError);
@@ -76,22 +76,20 @@ router.post('/', async (req, res) => {
 	}
 });
 
-router.delete('/', async (req, res) => {
+router.delete('/:id', async (req, res) => {
 	let conn;
 	try {
 		conn = await oracledb.getConnection(connection);
-		let InvoiceID = req.body.InvoiceID;
-		let InvoiceLineID = req.body.InvoiceLineID;
-		let result = await conn.execute(
-			'BEGIN SALES.PKG_SALES.prc_del_sale(:invoiceid, :invoicelineid, :deletedID); END;',
+
+		let row = await conn.execute(
+			'BEGIN SALES.PKG_SALES.prc_del_sale(:saleid, :deletedID); END;',
 			{
-				invoiceid: { val: InvoiceID },
-				invoicelineid: { val: InvoiceLineID },
+				saleid: req.params.id,
 				deletedID: { type: oracledb.NUMBER, dir: oracledb.BIND_OUT }
 			}
 		);
-		response = await result.outBinds;
-		res.status(200).send(JSON.stringify(response));
+		sale = await row.outBinds;
+		res.status(200).send(JSON.stringify(sale));
 	} catch (err) {
 		res.status(500).send(jsonError);
 	} finally {

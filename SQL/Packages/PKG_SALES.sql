@@ -6,21 +6,23 @@ CREATE or REPLACE PACKAGE sales.pkg_sales AS
 
 	PROCEDURE prc_sel_sale
 		(
-			v_id number,
+			v_SaleID number,
 			ResultData Out sys_RefCursor
 		);
 
 	PROCEDURE prc_add_sale
 		(
-			v_InvoiceID number,
-			v_SaleDollars number,
-			v_Inserted_InvoiceID OUT number
+			v_Region number,
+			v_Employee number,
+			v_Product number,
+			v_Quantity number,
+			v_Dollars number,
+			v_Inserted_SaleID OUT number
 		);
 	PROCEDURE prc_del_sale
 		(
-			v_InvoiceID number,
-			v_InvoiceLineID number,
-			v_Deleted_InvoiceID OUT number
+			v_SaleID number,
+			v_Deleted_SaleID OUT number
 		);
 END pkg_sales;
 /
@@ -34,49 +36,56 @@ CREATE or REPLACE PACKAGE BODY sales.pkg_sales AS
 		IS BEGIN
 		OPEN ResultData FOR
 		SELECT
-			f.InvoiceID
-			,f.InvoiceLineID
+			f.SaleID
 			,f.FK_Date
 			,r.RegionName
+			,p.Name
 			,f.SaleDollars
 		FROM sales.fctSales f
 		INNER JOIN sales.dimRegions r
-		ON f.fk_region = r.RegionID
+		ON r.RegionID = f.fk_region
 		INNER JOIN sales.dimEmployees e
-		ON e.EmployeeID = f.FK_Employee;
+		ON e.EmployeeID = f.FK_Employee
+		INNER JOIN sales.dimProducts p
+		ON p.ProductID = f.FK_Product;
 	END prc_sel_sales;
 
 	PROCEDURE prc_sel_sale
 		(
-			v_id number,
+			v_SaleID number,
 			ResultData Out sys_RefCursor
 		)
 		IS BEGIN
 		OPEN ResultData FOR
 		SELECT
-			f.InvoiceID
-			,f.InvoiceLineID
+			f.SaleID
 			,f.FK_Date
 			,r.RegionName
+			,p.Name
 			,f.SaleDollars
 		FROM sales.fctSales f
 		INNER JOIN sales.dimRegions r
 		ON f.fk_region = r.RegionID
 		INNER JOIN sales.dimEmployees e
 		ON e.EmployeeID = f.FK_Employee
-		WHERE f.invoiceLineID = v_id;
+		INNER JOIN sales.dimProducts p
+		ON p.ProductID = f.FK_Product
+		WHERE f.SaleID = v_SaleID;
 	END prc_sel_sale;
 
 	PROCEDURE prc_add_sale
 		(
-			v_InvoiceID number,
-			v_SaleDollars number,
-			v_Inserted_InvoiceID OUT number
+			v_Region number,
+			v_Employee number,
+			v_Product number,
+			v_Quantity number,
+			v_Dollars number,
+			v_Inserted_SaleID OUT number
 		)
 		IS BEGIN
-			INSERT INTO sales.fctSales (InvoiceID, InvoiceLineID, FK_Region, FK_Employee, FK_Date, Quantity, SaleDollars, ActiveFlag)
-			VALUES (v_InvoiceID, 1, 1, 1, DEFAULT, 1, v_SaleDollars, 1)
-			RETURNING InvoiceID INTO v_Inserted_InvoiceID;
+			INSERT INTO sales.fctSales (SaleID, FK_Region, FK_Employee, FK_Date, FK_Product, Quantity, SaleDollars, ActiveFlag)
+			VALUES (null, v_Region, v_Employee, sysdate, v_Product, v_Quantity, v_Dollars, 1)
+			RETURNING SaleID INTO v_Inserted_SaleID;
 
 			commit;
 
@@ -84,15 +93,13 @@ CREATE or REPLACE PACKAGE BODY sales.pkg_sales AS
 
 	PROCEDURE prc_del_sale
 		(
-			v_InvoiceID number,
-			v_InvoiceLineID number,
-			v_Deleted_InvoiceID OUT number
+			v_SaleID number,
+			v_Deleted_SaleID OUT number
 		)
 		IS BEGIN
 			DELETE FROM sales.fctSales
-			WHERE InvoiceID = v_InvoiceID
-			AND InvoiceLineID = v_InvoiceLineID
-			RETURNING InvoiceID INTO v_Deleted_InvoiceID;
+			WHERE SaleID = v_SaleID
+			RETURNING SaleID INTO v_Deleted_SaleID;
 
 			commit;
 
