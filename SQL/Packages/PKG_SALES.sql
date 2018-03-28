@@ -39,7 +39,7 @@ CREATE or REPLACE PACKAGE BODY sales.pkg_sales AS
 			f.SaleID
 			,f.FK_Date
 			,r.RegionName
-			,p.Name
+			,p.ProductName
 			,f.SaleDollars
 		FROM sales.fctSales f
 		INNER JOIN sales.dimRegions r
@@ -61,7 +61,7 @@ CREATE or REPLACE PACKAGE BODY sales.pkg_sales AS
 			f.SaleID
 			,f.FK_Date
 			,r.RegionName
-			,p.Name
+			,p.ProductName
 			,f.SaleDollars
 		FROM sales.fctSales f
 		INNER JOIN sales.dimRegions r

@@ -5,10 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "startBackEnd": "nodemon app.js 3000",
-    "startFrontEnd": "live-server 5200",
-    "startDocker": "docker container start 93a",
-    "start": "startBackEnd && startFrontEnd && startDocker"
+    "dev": "nodemon app.js"
   },
   "author": "",
   "license": "ISC",

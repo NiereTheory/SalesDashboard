@@ -2,7 +2,7 @@ const express = require('express');
 const oracledb = require('oracledb');
 oracledb.outFormat = oracledb.OBJECT;
 
-const connection = require('../../config');
+const config = require('../../config');
 
 const router = express.Router();
 
@@ -12,7 +12,7 @@ let maxRows = 1000;
 router.get('/', async (req, res) => {
 	let conn;
 	try {
-		conn = await oracledb.getConnection(connection);
+		conn = await oracledb.getConnection(config.connection);
 		let rows = await conn.execute(
 			'BEGIN SALES.PKG_SALES.prc_sel_sales(:cursor); END;',
 			{ cursor: { type: oracledb.CURSOR, dir: oracledb.BIND_OUT } }
@@ -31,7 +31,7 @@ router.get('/', async (req, res) => {
 router.get('/:id', async (req, res) => {
 	let conn;
 	try {
-		conn = await oracledb.getConnection(connection);
+		conn = await oracledb.getConnection(config.connection);
 		let row = await conn.execute(
 			'BEGIN SALES.PKG_SALES.prc_sel_sale(:id, :cursor); END;',
 			{
@@ -53,7 +53,7 @@ router.get('/:id', async (req, res) => {
 router.post('/', async (req, res) => {
 	let conn;
 	try {
-		conn = await oracledb.getConnection(connection);
+		conn = await oracledb.getConnection(config.connection);
 		let row = await conn.execute(
 			'BEGIN SALES.PKG_SALES.prc_add_sale(:region, :employee, :product, :quantity, :dollars, :createdID); END;',
 			{
@@ -79,7 +79,7 @@ router.post('/', async (req, res) => {
 router.delete('/:id', async (req, res) => {
 	let conn;
 	try {
-		conn = await oracledb.getConnection(connection);
+		conn = await oracledb.getConnection(config.connection);
 
 		let row = await conn.execute(
 			'BEGIN SALES.PKG_SALES.prc_del_sale(:saleid, :deletedID); END;',

@@ -1,13 +1,13 @@
 <div class="kpis">
-	<div *ngFor="let card of cards" class="kpi__card">
+	<div *ngFor="let sale of sales" class="kpi__card">
 		<div class="kpi__card--header">
-			{{ card.region }}
+			{{ sale.REGIONNAME }}
 		</div>
-		<div class="kpi__card--num" [ngClass]="{ pos: card.count > 0, neg: card.count <= 0 }">
-			{{ card.sum | currency:'USD':'symbol':'1.0-0' }}
+		<div class="kpi__card--num" [ngClass]="{ pos: sale.SALEID > 0, neg: sale.SALEID <= 0 }">
+			{{ sale.SALEDOLLARS | currency:'USD':'symbol':'1.0-0' }}
 		</div>
 		<div class="kpi__card--footer">
-			Transactions: {{ card.count }}
+			Transactions: {{ sale.SALEID }}
 		</div>
 	</div>
 </div>

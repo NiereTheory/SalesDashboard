@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SalesService } from '../../../services/sales.service';
 
 @Component({
 	selector: 'dash-kpi',
@@ -7,17 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class KpiComponent implements OnInit {
 
-	constructor() { }
+	public sales: any[];
 
-	ngOnInit() {
+	constructor(private saleService: SalesService) {
+
 	}
 
-	cards = [
-		{ region: 'GLOBAL', count: 180, sum: 35000 },
-	  	{ region: 'ASPAC', count: 50, sum: 605 },
-		{ region: 'EMEA', count: 24, sum: 220 },
-		{ region: 'LATAM', count: 60, sum: 707 },
-		{ region: 'NAM', count: 85, sum: 887 }
-	]
+	ngOnInit() {
+		this.saleService.getSales()
+			.subscribe(data => this.sales = data['sales']);
+	}
 
 }

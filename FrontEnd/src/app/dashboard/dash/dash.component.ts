@@ -8,6 +8,7 @@ import { SalesService } from '../../services/sales.service';
 })
 export class DashComponent implements OnInit {
 
+	// public sales: any[];
 	public sales: any[];
 
 	constructor(private saleService: SalesService) {
@@ -16,7 +17,7 @@ export class DashComponent implements OnInit {
 
 	ngOnInit() {
 		this.saleService.getSales()
-			.subscribe(data => this.sales = data['sales']);
+			.subscribe(data => { this.sales = data['sales']});
 	}
 
 }

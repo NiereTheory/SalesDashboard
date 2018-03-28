@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const morgan = require('morgan');
 
 const routes = require('./routes/index.routes');
+const config = require('./config');
 
 const app = express();
 
@@ -10,7 +11,7 @@ const app = express();
 // app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-app.use(morgan('dev'));
+app.use(morgan(config.env));
 
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
@@ -21,4 +22,4 @@ app.use(function(req, res, next) {
 
 app.use('/api', routes);
 
-app.listen(3000, () => console.log('Example app listening on port 3000!'))
+app.listen(config.port, () => console.log('Example app listening on port 3000!'))
