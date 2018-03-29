@@ -9,12 +9,69 @@ const router = express.Router();
 let jsonError = { Status: "Fail" };
 let maxRows = 1000;
 
-router.get('/', async (req, res) => {
+router.get('/kpis', async (req, res) => {
 	let conn;
 	try {
 		conn = await oracledb.getConnection(config.connection);
 		let rows = await conn.execute(
-			'BEGIN SALES.PKG_SALES.prc_sel_sales(:cursor); END;',
+			'BEGIN SALES.PKG_DASH.prc_get_saleskpis(:cursor); END;',
+			{ cursor: { type: oracledb.CURSOR, dir: oracledb.BIND_OUT } }
+		);
+		kpis = await rows.outBinds.cursor.getRows(maxRows);
+		res.status(200).send({kpis});
+	} catch (err) {
+		res.status(500).send(jsonError);
+	} finally {
+		if (conn) {
+			await conn.close();
+		}
+	}
+});
+
+router.get('/monthly', async (req, res) => {
+	let conn;
+	try {
+		conn = await oracledb.getConnection(config.connection);
+		let rows = await conn.execute(
+			'BEGIN SALES.PKG_DASH.prc_get_salesbymonth(:cursor); END;',
+			{ cursor: { type: oracledb.CURSOR, dir: oracledb.BIND_OUT } }
+		);
+		sales = await rows.outBinds.cursor.getRows(maxRows);
+		res.status(200).send({sales});
+	} catch (err) {
+		res.status(500).send(jsonError);
+	} finally {
+		if (conn) {
+			await conn.close();
+		}
+	}
+});
+
+router.get('/regionally', async (req, res) => {
+	let conn;
+	try {
+		conn = await oracledb.getConnection(config.connection);
+		let rows = await conn.execute(
+			'BEGIN SALES.PKG_DASH.prc_get_salesbyregion(:cursor); END;',
+			{ cursor: { type: oracledb.CURSOR, dir: oracledb.BIND_OUT } }
+		);
+		sales = await rows.outBinds.cursor.getRows(maxRows);
+		res.status(200).send({sales});
+	} catch (err) {
+		res.status(500).send(jsonError);
+	} finally {
+		if (conn) {
+			await conn.close();
+		}
+	}
+});
+
+router.get('/top', async (req, res) => {
+	let conn;
+	try {
+		conn = await oracledb.getConnection(config.connection);
+		let rows = await conn.execute(
+			'BEGIN SALES.PKG_DASH.prc_get_topsales(:cursor); END;',
 			{ cursor: { type: oracledb.CURSOR, dir: oracledb.BIND_OUT } }
 		);
 		sales = await rows.outBinds.cursor.getRows(maxRows);
@@ -32,64 +89,15 @@ router.get('/:id', async (req, res) => {
 	let conn;
 	try {
 		conn = await oracledb.getConnection(config.connection);
-		let row = await conn.execute(
-			'BEGIN SALES.PKG_SALES.prc_sel_sale(:id, :cursor); END;',
+		let rows = await conn.execute(
+			'BEGIN SALES.PKG_DASH.prc_get_salesbyemployee(:emp, :cursor); END;',
 			{
-				id: req.params.id,
-				cursor: { type: oracledb.CURSOR, dir: oracledb.BIND_OUT }
+				emp: req.params.id,
+				cursor: { type: oracledb.CURSOR, dir: oracledb.BIND_OUT } 
 			}
 		);
-		sale = await row.outBinds.cursor.getRows(1);
-		res.status(200).send(JSON.stringify(sale));
-	} catch (err) {
-		res.status(500).send(jsonError);
-	} finally {
-		if (conn) {
-			await conn.close();
-		}
-	}
-});
-
-router.post('/', async (req, res) => {
-	let conn;
-	try {
-		conn = await oracledb.getConnection(config.connection);
-		let row = await conn.execute(
-			'BEGIN SALES.PKG_SALES.prc_add_sale(:region, :employee, :product, :quantity, :dollars, :createdID); END;',
-			{
-				region: req.body.Region,
-				employee: req.body.Employee,
-				product: req.body.Product,
-				quantity: req.body.Quantity,
-				dollars: req.body.Dollars,
-				createdID: { type: oracledb.NUMBER, dir: oracledb.BIND_OUT }
-			}
-		);
-		response = await row.outBinds;
-		res.status(200).send(JSON.stringify(response));
-	} catch (err) {
-		res.status(500).send(jsonError);
-	} finally {
-		if (conn) {
-			await conn.close();
-		}
-	}
-});
-
-router.delete('/:id', async (req, res) => {
-	let conn;
-	try {
-		conn = await oracledb.getConnection(config.connection);
-
-		let row = await conn.execute(
-			'BEGIN SALES.PKG_SALES.prc_del_sale(:saleid, :deletedID); END;',
-			{
-				saleid: req.params.id,
-				deletedID: { type: oracledb.NUMBER, dir: oracledb.BIND_OUT }
-			}
-		);
-		sale = await row.outBinds;
-		res.status(200).send(JSON.stringify(sale));
+		sales = await rows.outBinds.cursor.getRows(maxRows);
+		res.status(200).send({sales});
 	} catch (err) {
 		res.status(500).send(jsonError);
 	} finally {
