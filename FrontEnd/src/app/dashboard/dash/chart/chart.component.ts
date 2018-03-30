@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SalesService } from '../../../services/sales.service';
 
 @Component({
 	selector: 'dash-chart',
@@ -7,28 +8,34 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ChartComponent implements OnInit {
 
-	constructor() { }
+	public monthlysales: any[];
+	public maxmonthlysale = Number;
+	public regionalsales: any[];
+	public maxregionalsale:Number;
 
-	ngOnInit() {
+	constructor(private saleService: SalesService) {
+
 	}
 
-	lineChartData = [
-		{ data: [100, 120, 88], label: 'Sales' }
-	];
-	lineChartLabels = ['Jan', 'Feb', 'Mar'];
-	ChartOptions = {
-		responsive: true,
-		maintainAspectRatio: true,
-	};
+	ngOnInit() {
+		this.saleService.getMonthly()
+			.subscribe(data => {
+				this.monthlysales = data['sales'];
+				let sum = this.monthlysales.reduce((a, b) => a + b.SALESUM, 0);
+				// issue chaining in TS and new Dates in sort
+				this.monthlysales.map(item => item.PORTION = Math.round(item.SALESUM / sum * 100));
+				this.monthlysales.sort((a,b) => a.SALEMONTH - b.SALEMONTH);
+				this.maxmonthlysale = Math.max.apply(Math, this.monthlysales.map(item => item.SALESUM));
+			});
 
-	//
-
-	barChartData = [
-		{ data: [100, 130, 88], label: 'ASPAC' },
-		{ data: [98, 120, 85], label: 'EMEA' },
-		{ data: [110, 133, 98], label: 'LATAM' },
-		{ data: [120, 120, 88], label: 'NAM' }
-	];
-	barChartLabels = ['Jan', 'Feb', 'Mar'];
+		this.saleService.getRegionally()
+			.subscribe(data => {
+				this.regionalsales = data['sales'];
+				let sum = this.regionalsales.reduce((a, b) => a + b.SALESUM, 0);
+				this.regionalsales.map(item => item.PORTION = Math.round(item.SALESUM / sum * 100));
+				this.regionalsales.sort((a,b) => b.SALESUM - a.SALESUM);
+				this.maxregionalsale = Math.max.apply(Math, this.regionalsales.map(item => item.SALESUM));
+			});
+	}
 
 }

@@ -1,19 +1,27 @@
 .chart {
 	display: flex;
-	flex-flow: row wrap;
-	color: var(--color-light-blue);
 	margin-bottom: 2rem;
 }
 
-.graph {
-	max-width: 100vh;
+.chart__graph {
 	flex: 1;
 	background-color: var(--color-primary-white);
-	box-shadow: 0 .5rem 1rem 0 var(--color-light-black);
 }
 
-.graph:not(:last-child) {
+.chart__graph:not(:last-child) {
 	margin-right: 2rem;
+}
+
+.graph {
+	padding: 1rem;
+	box-shadow: 0 .5rem 1rem 0 var(--color-light-black);
+
+	flex: 1;
+
+	display: flex;
+	flex-flow: row;
+	align-items: center;
+	justify-content: center;
 }
 
 .graph--header {
@@ -21,4 +29,24 @@
 	font-weight: 400;
 	text-transform: uppercase;
 	padding-left: .5rem;
+	color: var(--color-light-blue);
+}
+
+.graph--bar {
+	background-color: grey;
+	height: 20rem;
+
+	text-align: center;
+	font-size: 1.5rem;
+	font-weight: 400;
+	color: var(--color-primary-white);
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-flow: column;
+}
+
+.graph--bar:not(:last-child) {
+	margin-right: 2px;
 }

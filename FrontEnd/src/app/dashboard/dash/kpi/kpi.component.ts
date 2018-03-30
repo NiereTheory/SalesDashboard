@@ -21,7 +21,6 @@ export class KpiComponent implements OnInit {
 				let target = this.kpis.splice(this.kpis.findIndex(item => item.SALEREGION == 'TARGET' || item.SALEREGION == 'GLOBAL', 2))
 				target.sort((a,b) => a.SALEREGION.localeCompare(b.SALEREGION));
 				this.kpis = this.kpis.concat(target);
-				console.log(this.kpis);
 			});
 	}
 

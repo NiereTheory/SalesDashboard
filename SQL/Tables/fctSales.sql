@@ -32,6 +32,10 @@ insert into fctsales
     select null, 1, 1, to_date('20180101', 'yyyymmdd'), 1, 1, 200, 1 from dual union all
     select null, 2, 2, to_date('20180101', 'yyyymmdd'), 1, 1, 200, 1 from dual union all
     select null, 1, 2, to_date('20180201', 'yyyymmdd'), 1, 3, 600, 1 from dual union all
-    select null, 2, 1, to_date('20180201', 'yyyymmdd'), 1, 1, 200, 1 from dual union all
-    select null, 3, 2, to_date('20180301', 'yyyymmdd'), 1, 2, 400, 1 from dual union all
+    select null, 2, 1, to_date('20180301', 'yyyymmdd'), 1, 1, 200, 1 from dual union all
+    select null, 4, 2, to_date('20180301', 'yyyymmdd'), 1, 2, 400, 1 from dual union all
+	select null, 2, 2, to_date('20180101', 'yyyymmdd'), 1, 1, 150, 1 from dual union all
+    select null, 1, 2, to_date('20180101', 'yyyymmdd'), 1, 3, 600, 1 from dual union all
+    select null, 2, 1, to_date('20180201', 'yyyymmdd'), 1, 1, 300, 1 from dual union all
+    select null, 3, 2, to_date('20180301', 'yyyymmdd'), 1, 2, 450, 1 from dual union all
     select null, 4, 1, to_date('20180301', 'yyyymmdd'), 1, 1, 200, 1 from dual

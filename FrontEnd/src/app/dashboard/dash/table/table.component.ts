@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SalesService } from '../../../services/sales.service';
 
 @Component({
 	selector: 'dash-table',
@@ -7,24 +8,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TableComponent implements OnInit {
 
-	constructor() { }
+	public empsales: any[];
+	public topsales: any[];
 
-	ngOnInit() {
+	constructor(private saleService: SalesService) {
+
 	}
 
-	mysales = [
-		{ name: 'Ben', region: 'NAM', amt: 500 },
-		{ name: 'Ben', region: 'NAM', amt: 600 },
-		{ name: 'Ben', region: 'NAM', amt: 300 },
-		{ name: 'Ben', region: 'NAM', amt: 800 },
-		{ name: 'Ben', region: 'NAM', amt: 1000 }
-	];
+	ngOnInit() {
+		this.saleService.getByEmployee()
+			.subscribe(data => {
+				this.empsales = data['sales'].sort((a,b) => a.SALESUM - b.SALESUM);
+			});
 
-	topsales = [
-		{ name: 'Tina', region: 'NAM', amt: 9000 },
-		{ name: 'Tina', region: 'NAM', amt: 8000 },
-		{ name: 'Tina', region: 'NAM', amt: 750 },
-		{ name: 'Ben', region: 'NAM', amt: 700 },
-		{ name: 'Ben', region: 'NAM', amt: 500 }
-	];
+		this.saleService.getTop()
+			.subscribe(data => {
+				this.topsales = data['sales'].sort((a,b) => a.SALESUM - b.SALESUM);
+			});
+	}
 }

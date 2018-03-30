@@ -5,16 +5,18 @@
 			<table class="table">
 				<thead>
 					<tr class="tbl__row tbl__row--header">
-						<th class="tbl__th">Sales Rep</th>
+						<th class="tbl__th">Rep</th>
+						<th class="tbl__th">Date</th>
 						<th class="tbl__th">Region</th>
-						<th class="tbl__th">Sale Amount</th>
+						<th class="tbl__th">Amount</th>
 					</tr>
 				</thead>
 				<tbody>
-					<tr class="tbl__row tbl__row--data" *ngFor="let sale of mysales">
-						<td>{{ sale.name }}</td>
-						<td>{{ sale.region }}</td>
-						<td>{{ sale.amt | currency:'USD':'symbol':'1.0-0' }}</td>
+					<tr class="tbl__row tbl__row--data" *ngFor="let sale of empsales">
+						<td>{{ sale.SALEEMPLOYEE }}</td>
+						<td>{{ sale.SALEDATE.split("T")[0] | date: 'MMM d, y' }}</td>
+						<td>{{ sale.SALEREGION }}</td>
+						<td>{{ sale.SALEAMOUNT | currency:'USD':'symbol':'1.0-0' }}</td>
 					</tr>
 				</tbody>
 			</table>
@@ -28,16 +30,18 @@
 			<table class="table">
 				<thead>
 					<tr class="tbl__row tbl__row--header">
-						<th class="tbl__th">Sales Rep</th>
+						<th class="tbl__th">Rep</th>
+						<th class="tbl__th">Date</th>
 						<th class="tbl__th">Region</th>
-						<th class="tbl__th">Sale Amount</th>
+						<th class="tbl__th">Amount</th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr class="tbl__row tbl__row--data" *ngFor="let sale of topsales">
-						<td>{{ sale.name }}</td>
-						<td>{{ sale.region }}</td>
-						<td>{{ sale.amt | currency:'USD':'symbol':'1.0-0' }}</td>
+						<td>{{ sale.SALEEMPLOYEE }}</td>
+						<td>{{ sale.SALEDATE.split("T")[0] | date: 'MMM d, y' }}</td>
+						<td>{{ sale.SALEREGION }}</td>
+						<td>{{ sale.SALEAMOUNT | currency:'USD':'symbol':'1.0-0' }}</td>
 					</tr>
 				</tbody>
 			</table>
