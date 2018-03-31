@@ -11,17 +11,21 @@
 	--color-primary-green: #28a745;
 	--color-primary-red: #dc3545;
 }
+
 * {
 	margin: 0;
 	padding: 0;
 }
+
 *, *::after, *::after {
 	box-sizing: inherit;
 }
+
 html {
 	box-sizing: border-box;
 	font-size: 62.5%;
 }
+
 body {
 	font-family: 'Source Sans Pro', "Segoe UI", sans-serif;
 	font-weight: 200;
@@ -38,4 +42,10 @@ body {
 
 .neg {
 	color: var(--color-primary-red);
+}
+
+@media only screen and (max-width: 600px) {
+	html {
+		font-size: 55%;
+	}
 }

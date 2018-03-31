@@ -9,9 +9,10 @@ import { SalesService } from '../../../services/sales.service';
 export class ChartComponent implements OnInit {
 
 	public monthlysales: any[];
-	public maxmonthlysale = Number;
+	public maxmonthlysale = Number; // for rgbA value
 	public regionalsales: any[];
-	public maxregionalsale:Number;
+	public maxregionalsale:Number; // for rgbA value
+	public maxheight: Number;
 
 	constructor(private saleService: SalesService) {
 
@@ -35,6 +36,7 @@ export class ChartComponent implements OnInit {
 				this.regionalsales.map(item => item.PORTION = Math.round(item.SALESUM / sum * 100));
 				this.regionalsales.sort((a,b) => b.SALESUM - a.SALESUM);
 				this.maxregionalsale = Math.max.apply(Math, this.regionalsales.map(item => item.SALESUM));
+				this.maxheight = Math.max.apply(Math, this.regionalsales.map(item => item.PORTION));
 			});
 	}
 

@@ -1,13 +1,12 @@
-<div class="chart">
+<div class="charts">
 	<div class="chart__graph">
 		<div class="graph--header">
 			Sales by Month
 		</div>
 		<div class="graph">
-			<div [style.flex]="sale.PORTION" 
-			
-			class="graph--bar" *ngFor="let sale of monthlysales"
-			[ngStyle]="{'background-color': 'rgba(128, 128, 128,' + (sale.SALESUM / maxmonthlysale) + ')'}">
+			<div
+			class="graph--bar heat" *ngFor="let sale of monthlysales"
+			[ngStyle]="{'background-color': 'rgba(255, 69, 0,' + (sale.SALESUM / maxmonthlysale) + ')'}" [style.flex]="sale.PORTION/2" [style.height.rem]="maxheight/2">
 				{{ sale.SALEMONTH.split("T")[0] | date:'MMM' }}
 				<br>
 				{{ sale.SALESUM | currency:'USD':'symbol':'1.0-0' }}
@@ -20,7 +19,7 @@
 				Sales by Region
 		</div>
 		<div class="graph">
-			<div [style.flex]="sale.PORTION" [ngStyle]="{'background-color': 'rgba(128, 128, 128,' + (sale.SALESUM / maxmonthlysale) + ')'}" class="graph--bar" *ngFor="let sale of regionalsales">
+			<div class="graph--bar" [ngStyle]="{'background-color': 'rgba(255, 69, 0,' + (sale.SALESUM / maxregionalsale) + ')'}" *ngFor="let sale of regionalsales" [style.height]="sale.PORTION/2 + 'rem'">
 				{{ sale.SALEREGION }}
 				<br>
 				{{ sale.SALESUM | currency:'USD':'symbol':'1.0-0' }}
@@ -28,3 +27,34 @@
 		</div>
 	</div>	
 </div>
+
+<!-- 
+<div class="chart">
+	<div class="chart__graph">
+		<div class="graph--header">
+			Sales by Month
+		</div>
+		<div class="graph">
+			<div
+			class="graph--bar heat" *ngFor="let sale of monthlysales"
+			[ngStyle]="{'background-color': 'rgba(255, 69, 0,' + (sale.PORTION / maxmonthlysale) + ')'}" [style.flex]="sale.PORTION/2" [style.height.rem]="maxheight/2">
+				{{ sale.SALEMONTH.split("T")[0] | date:'MMM' }}
+				<br>
+				{{ sale.SALESUM | currency:'USD':'symbol':'1.0-0' }}
+			</div>
+		</div>
+	</div>	
+	
+	<div class="chart__graph">
+		<div class="graph--header">
+				Sales by Region
+		</div>
+		<div class="graph">
+			<div [ngStyle]="{'background-color': 'rgba(255, 69, 0,' + (sale.SALESUM / maxregionalysale) + ')'}" class="graph--bar" *ngFor="let sale of regionalsales" [style.height]="sale.PORTION/2 + 'rem'">
+				{{ sale.SALEREGION }}
+				<br>
+				{{ sale.SALESUM | currency:'USD':'symbol':'1.0-0' }}
+			</div>
+		</div>
+	</div>	
+</div> -->

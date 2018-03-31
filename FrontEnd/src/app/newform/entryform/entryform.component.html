@@ -1,1 +1,53 @@
-<p>Entry form</p>
+<div class="entrycontainer">
+
+    <h4 class="entry__heading">Enter New Sale</h4>
+
+    <form class="form">
+        <div class="formgroup">
+            <label class="formgroup__label" for="region">Region</label>
+            <select class="formgroup__input" name="" id="region" required>
+                <option value="" disabled selected></option>
+                <option value="1">ASPAC</option>
+                <option value="2">EMEA</option>
+                <option value="3">LATAM</option>
+                <option value="4">NAM</option>
+            </select>
+        </div>
+
+        <div class="formgroup">
+            <label class="formgroup__label" for="employee">Employee</label>
+            <select class="formgroup__input" name="" id="employee" required>
+                <option value="" disabled selected></option>
+                <option value="1">Ben</option>
+                <option value="2">Josh</option>
+            </select>
+        </div>
+
+        <div class="formgroup">
+            <label class="formgroup__label" for="amount">Dollars</label>
+            <input class="formgroup__input" type="number" name="" id="amount" min="100" max="400" step="1" required>
+        </div>
+
+        <div class="formgroup">
+            <label class="formgroup__label" for="date">Date</label>
+            <div class="formgroup__date">
+                <div class="formgroup__date--part formgroup__month">
+                    <select class="formgroup__input" name="" id="employee" required>
+                        <option value="" disabled selected>Month</option>
+                        <option value="01">Jan</option>
+                        <option value="02">Feb</option>
+                        <option value="03">Mar</option>
+                    </select>
+                </div>
+                <div class="formgroup__date--part formgroup__day">
+                    <input class="formgroup__input" type="number" min="1" max="31" step="1" placeholder="Day" required>
+                </div>
+            </div>
+        </div>
+
+        <div class="formgroup formgroup__button">
+            <input class="submit__button--go" type="submit" value="Add Sale">
+        </div>
+    </form>
+
+</div>

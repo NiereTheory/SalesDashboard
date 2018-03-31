@@ -42,15 +42,22 @@
 }
 
 .tbl__row {
-	display: flex;
-	justify-content: space-between;
-}
-
-.tbl__row td {
-	flex: 1;
+	display: grid;
+	grid-template-columns: 1.3fr 1.3fr 1fr 1fr;
+	grid-gap: 1rem;
 }
 
 .tbl__row--data:hover {
 	background-color: var(--color-dark-blue);
 	color: var(--color-primary-white);
+}
+
+@media only screen and (max-width: 800px) {
+	.tables {
+		flex-flow: column;
+	}
+	.table__div {
+		margin-bottom: 1rem;
+		width: 100%;
+	}
 }

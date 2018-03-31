@@ -2,12 +2,10 @@ const routes = require('express').Router();
 
 // Use this to import and then add another use statement
 
-const empRoutes = require('./employees/index.employees');
-const regionRoutes = require('./regions/index.regions');
 const salesRoutes = require('./sales/index.sales');
+const newRoutes = require('./new/index.new');
 
-routes.use('/employees', empRoutes);
-routes.use('/regions', regionRoutes);
 routes.use('/sales', salesRoutes);
+routes.use('/new', newRoutes);
 
 module.exports = routes;

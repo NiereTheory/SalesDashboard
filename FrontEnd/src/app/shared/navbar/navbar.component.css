@@ -18,6 +18,21 @@
 	margin-right: auto;
 }
 
-.nav__list--item:not(:first-child):not(:last-child) {
-	margin-right: 1rem;
+@media only screen and (max-width: 600px) {
+	.nav__list {
+		flex-flow: column;
+		padding: .5rem 0 0 0;
+	}
+	.nav__list--item {
+		width: 100%;
+		text-align: center;
+		border-bottom: 1px solid var(--color-primary-grey);
+		padding: .75rem;
+	}
+	.nav__list--link {
+		padding: 1rem 2rem;
+	}
+	.nav__list--item:first-child {
+		margin-right: 0;
+	}
 }
