@@ -1,0 +1,19 @@
+.logincontainer {
+    max-width: 25rem;
+    margin: 0 auto;
+}
+
+.form {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.formgroup {
+    width: 100%;
+}
+
+.formgroup {
+    margin: 1rem 0;
+}

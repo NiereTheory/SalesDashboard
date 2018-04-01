@@ -44,6 +44,62 @@ body {
 	color: var(--color-primary-red);
 }
 
+/*  */
+
+.formheader {
+    font-size: 2.5rem;
+    font-weight: 400;
+    width: 100%;
+    text-align: center;
+    color: var(--color-light-blue);
+}
+
+.formgroup__label {
+    display: block;
+    color: var(--color-dark-blue);
+    font-size: 1.25rem;
+    font-weight: 900;
+}
+
+.formgroup__input {
+    width: 100%;
+    height: 3.5rem;
+    font-size: 1.5rem;
+    outline: none;
+    color: var(--color-dark-blue);
+    background-color: var(--color-primary-white);
+}
+
+.formgroup__input[type="number"] {
+    padding-left: .75rem;
+}
+
+.formgroup__input:valid {
+    border-bottom: 2px dotted var(--color-primary-green);
+}
+
+.submit__button--go {
+    text-transform: uppercase;
+    letter-spacing: .5rem;
+    margin-top: 3rem;
+    border-radius: 500px;
+    margin: 0 auto;
+    width: 25rem;
+    height: 4rem;
+    font-size: 1.75rem;
+    box-shadow: 0 1rem 2rem 0 var(--color-light-black);
+    background-color: var(--color-dark-blue);
+    color: white;
+    outline: none;
+    cursor: pointer;
+}
+
+.submit__button--go:hover {
+	transform: scale(1.2);
+}
+
+/*  */
+
 @media only screen and (max-width: 600px) {
 	html {
 		font-size: 55%;

@@ -12,11 +12,10 @@ import { KpiComponent } from './dashboard/dash/kpi/kpi.component';
 import { ChartComponent } from './dashboard/dash/chart/chart.component';
 import { TableComponent } from './dashboard/dash/table/table.component';
 import { EntryformComponent } from './newform/entryform/entryform.component';
-import { AboutComponent } from './about/about/about.component';
+import { LoginComponent } from './login/login/login.component';
 
 import { SalesService } from './services/sales.service';
 import { NewService } from './services/new.service';
-
 
 @NgModule({
   declarations: [
@@ -28,7 +27,7 @@ import { NewService } from './services/new.service';
     ChartComponent,
     TableComponent,
     EntryformComponent,
-    AboutComponent
+    LoginComponent
   ],
   imports: [
     BrowserModule,

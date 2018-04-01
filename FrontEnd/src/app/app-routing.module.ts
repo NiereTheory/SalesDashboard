@@ -3,12 +3,12 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { DashComponent } from './dashboard/dash/dash.component';
 import { EntryformComponent } from './newform/entryform/entryform.component';
-import { AboutComponent } from './about/about/about.component';
+import { LoginComponent } from './login/login/login.component';
 
 const routes: Routes = [
 	{ path: 'dashboard', component: DashComponent },
 	{ path: 'new', component: EntryformComponent },
-	{ path: 'about', component: AboutComponent },
+	{ path: 'login', component: LoginComponent },
 	{ path: '', redirectTo: '/dashboard', pathMatch: 'full' }
 ]
 
