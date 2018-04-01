@@ -47,6 +47,7 @@
 	justify-content: flex-end;
 	flex-flow: column;
 	flex: 1;
+	/* border-radius: 50%; */
 }
 
 .graph--bar:not(:last-child) {

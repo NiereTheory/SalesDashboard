@@ -45,8 +45,7 @@ From here, I created some basic components using the Angular CLI to speed up dev
 
 Create your dashboard page, new entry page, and an about page.
 
-Pull in font-awesome icons and a google font for style points.
-Also pull in a charting library: https://valor-software.com/ng2-charts/
 Setup the components with html, ts (placeholders for now), and css
 Add a routing module and router outlet
 Use the angular cli to either ng g c [component name] or ng g s [service name] -module=app.module
+Add necessary imports (forms module, etc)

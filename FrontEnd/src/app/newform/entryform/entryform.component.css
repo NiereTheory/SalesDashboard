@@ -33,6 +33,7 @@
     font-size: 1.5rem;
     outline: none;
     color: var(--color-dark-blue);
+    background-color: var(--color-primary-white);
 }
 
 .formgroup__input[type="number"] {
@@ -64,6 +65,7 @@
 
 .submit__button--go {
     text-transform: uppercase;
+    letter-spacing: .5rem;
     margin-top: 3rem;
     border-radius: 500px;
     margin: 0 auto;
@@ -74,6 +76,11 @@
     background-color: var(--color-dark-blue);
     color: white;
     outline: none;
+    cursor: pointer;
+}
+
+.submit__button--go:hover {
+	transform: scale(1.2);
 }
 
 @media only screen and (max-width: 600px) {

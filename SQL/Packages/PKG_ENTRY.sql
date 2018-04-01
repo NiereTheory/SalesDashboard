@@ -41,7 +41,7 @@ CREATE or REPLACE PACKAGE BODY sales.pkg_new_sale AS
 		OPEN ResultData FOR
 		SELECT
 			e.EmployeeID
-			,e.FirstName || ' ' || e.LastName
+			,e.FirstName || ' ' || e.LastName as FullName
 		FROM sales.dimEmployees e
 		WHERE e.ActiveFlag = 1
 		ORDER BY e.FirstName;
@@ -58,8 +58,8 @@ CREATE or REPLACE PACKAGE BODY sales.pkg_new_sale AS
 			v_Inserted_SaleID OUT number
 		)
 		IS BEGIN
-			INSERT INTO sales.fctSales (SaleID, FK_Region, FK_Employee, FK_Date, FK_Product, Quantity, SaleDollars, ActiveFlag)
-			VALUES (null, v_Region, v_Employee, v_Date, 1, 1, v_Dollars, 1)
+			INSERT INTO sales.fctSales (SaleID, FK_Region, FK_Employee, FK_Date, FK_Product, Quantity, SaleDollars, CreateDate, ActiveFlag)
+			VALUES (null, v_Region, v_Employee, v_Date, 1, 1, v_Dollars, DEFAULT, DEFAULT)
 			RETURNING SaleID INTO v_Inserted_SaleID;
 
 			COMMIT;
