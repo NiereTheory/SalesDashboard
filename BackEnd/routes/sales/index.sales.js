@@ -1,8 +1,10 @@
 const express = require('express');
 const oracledb = require('oracledb');
+const jwt = require('jsonwebtoken');
 oracledb.outFormat = oracledb.OBJECT;
 
 const config = require('../../config');
+const authenticate = require('../../middleware/auth');
 
 const router = express.Router();
 
@@ -85,14 +87,14 @@ router.get('/top', async (req, res) => {
 	}
 });
 
-router.get('/:id', async (req, res) => {
-	let conn;
+router.get('/mine', authenticate, async (req, res) => {
+    let conn;
 	try {
 		conn = await oracledb.getConnection(config.connection);
 		let rows = await conn.execute(
 			'BEGIN SALES.PKG_DASH.prc_get_salesbyemployee(:emp, :cursor); END;',
 			{
-				emp: req.params.id,
+				emp: req.user,
 				cursor: { type: oracledb.CURSOR, dir: oracledb.BIND_OUT } 
 			}
 		);

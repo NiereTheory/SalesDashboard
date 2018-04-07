@@ -2,6 +2,7 @@ CREATE TABLE sales.dimEmployees
 (
 	EmployeeID 		number(5, 0) CONSTRAINT Employee_PK Primary Key,
 	EmployeeCode 	varchar2(20) not null,
+    Pass            varchar2(255) not null,
 	FirstName		varchar2(25) not null,
 	LastName		varchar2(25) not null,
 	--Other useful fields
@@ -25,5 +26,5 @@ CREATE TABLE sales.dimEmployees
 -- 	FROM dual;
 -- END;
 
-Insert into DIMEMPLOYEES (EMPLOYEEID,EMPLOYEECODE,FIRSTNAME,LASTNAME,STARTDATE,ENDDATE,ACTIVEFLAG) values (1,'BN','Ben','Niere',to_date('04-MAR-18','DD-MON-RR'),to_date('31-DEC-99','DD-MON-RR'),'1');
-Insert into DIMEMPLOYEES (EMPLOYEEID,EMPLOYEECODE,FIRSTNAME,LASTNAME,STARTDATE,ENDDATE,ACTIVEFLAG) values (2,'JL','Josh','Levein',to_date('04-DEC-17','DD-MON-RR'),to_date('31-DEC-99','DD-MON-RR'),'1');
+Insert into DIMEMPLOYEES (EMPLOYEEID,EMPLOYEECODE,PASS, FIRSTNAME,LASTNAME,STARTDATE,ENDDATE,ACTIVEFLAG) values (1,'BN', 'test', 'Ben','Niere',to_date('04-MAR-18','DD-MON-RR'),to_date('31-DEC-99','DD-MON-RR'),'1');
+Insert into DIMEMPLOYEES (EMPLOYEEID,EMPLOYEECODE,PASS, FIRSTNAME,LASTNAME,STARTDATE,ENDDATE,ACTIVEFLAG) values (2,'JL', 'test', 'Josh','Levein',to_date('04-DEC-17','DD-MON-RR'),to_date('31-DEC-99','DD-MON-RR'),'1');

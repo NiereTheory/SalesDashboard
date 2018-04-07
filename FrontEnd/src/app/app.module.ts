@@ -16,6 +16,7 @@ import { LoginComponent } from './login/login/login.component';
 
 import { SalesService } from './services/sales.service';
 import { NewService } from './services/new.service';
+import { LoginService } from './services/login.service';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { NewService } from './services/new.service';
   ],
   providers: [
     SalesService, 
-    NewService
+    NewService,
+    LoginService
   ],
   bootstrap: [AppComponent]
 })

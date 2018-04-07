@@ -43,8 +43,8 @@ export class SalesService {
 		return this.http.get('http://127.0.0.1:3000/api/sales/top');
 	}
 
-	getByEmployee() {
-		return this.http.get('http://127.0.0.1:3000/api/sales/1');
+	getByEmployee(token) {
+		return this.http.get('http://127.0.0.1:3000/api/sales/mine', { headers: new HttpHeaders().set('Authorization', token) });
 	}
 
 }

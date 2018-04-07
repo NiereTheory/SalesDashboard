@@ -9,7 +9,7 @@ const routes: Routes = [
 	{ path: 'dashboard', component: DashComponent },
 	{ path: 'new', component: EntryformComponent },
 	{ path: 'login', component: LoginComponent },
-	{ path: '', redirectTo: '/dashboard', pathMatch: 'full' }
+	{ path: '', redirectTo: '/login', pathMatch: 'full' }
 ]
 
 @NgModule({

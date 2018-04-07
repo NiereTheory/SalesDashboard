@@ -4,11 +4,11 @@
     <form class="form" (ngSubmit)="onSubmit(f)" #f="ngForm" ngNativeValidate>
         <div class="formgroup">
             <label class="formgroup__label" for="username">Username</label>
-            <input class="formgroup__input" type="text" name="username" value="sample user"required>
+            <input ngModel="BN" class="formgroup__input" type="text" name="username" value="BN" required>
         </div>
         <div class="formgroup">
             <label class="formgroup__label" for="password">Password</label>
-            <input class="formgroup__input" type="password" name="password" value="samplepassword" required>
+            <input ngModel="test" class="formgroup__input" type="password" name="password" required>
         </div>
 
         <div class="formgroup formgroup__button">
