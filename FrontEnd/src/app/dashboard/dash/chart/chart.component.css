@@ -47,7 +47,7 @@
 	justify-content: flex-end;
 	flex-flow: column;
 	flex: 1;
-	/* border-radius: 50%; */
+	background-color: var(--color-primary-orange);
 }
 
 .graph--bar:not(:last-child) {

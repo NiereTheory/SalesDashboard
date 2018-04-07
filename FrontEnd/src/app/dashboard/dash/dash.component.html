@@ -1,5 +1,6 @@
-<div class="dash">
-	<dash-kpi></dash-kpi>
-	<dash-chart></dash-chart>
-	<dash-table></dash-table>
+<div *ngIf="res" class="dash">
+    <dash-kpi [sKpis]="sKpis"></dash-kpi>
+	<dash-chart [sMonthly]="sMonthly" [sRegionally]="sRegionally"></dash-chart>
+	<dash-table [sEmployee]="sEmployee" [sTop]="sTop"></dash-table>
 </div>
+

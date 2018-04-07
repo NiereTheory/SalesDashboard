@@ -12,7 +12,7 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr class="tbl__row tbl__row--data" *ngFor="let sale of empsales">
+					<tr class="tbl__row tbl__row--data" *ngFor="let sale of sEmployee">
 						<td>{{ sale.SALEEMPLOYEE }}</td>
 						<td>{{ sale.SALEDATE.split("T")[0] | date: 'MMM d, y' }}</td>
 						<td>{{ sale.SALEREGION }}</td>
@@ -37,7 +37,7 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr class="tbl__row tbl__row--data" *ngFor="let sale of topsales">
+					<tr class="tbl__row tbl__row--data" *ngFor="let sale of sTop">
 						<td>{{ sale.SALEEMPLOYEE }}</td>
 						<td>{{ sale.SALEDATE.split("T")[0] | date: 'MMM d, y' }}</td>
 						<td>{{ sale.SALEREGION }}</td>

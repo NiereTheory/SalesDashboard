@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { SalesService } from '../../../services/sales.service';
 
 @Component({
@@ -9,21 +9,16 @@ import { SalesService } from '../../../services/sales.service';
 export class TableComponent implements OnInit {
 
 	public empsales: any[];
-	public topsales: any[];
+    public topsales: any[];
+    
+    @Input() sTop: any[];
+    @Input() sEmployee: any[];
 
-	constructor(private saleService: SalesService) {
+	constructor() {
 
 	}
 
 	ngOnInit() {
-		this.saleService.getByEmployee()
-			.subscribe(data => {
-				this.empsales = data['sales'].sort((a,b) => a.SALESUM - b.SALESUM);
-			});
 
-		this.saleService.getTop()
-			.subscribe(data => {
-				this.topsales = data['sales'].sort((a,b) => a.SALESUM - b.SALESUM);
-			});
 	}
 }

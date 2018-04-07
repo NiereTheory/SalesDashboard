@@ -27,24 +27,32 @@ GRANT EXECUTE, DEBUG ON "SALES"."PKG_DASH" to "WEBUSER";
 CREATE OR REPLACE PACKAGE BODY sales.pkg_dash AS
     PROCEDURE prc_get_saleskpis(ResultData Out sys_RefCursor)
     IS BEGIN OPEN ResultData FOR
-        SELECT
-            Coalesce(saleRegion, 'GLOBAL') as saleRegion
-            ,saleSum
-            ,saleCount
-        FROM 
-        (
+        WITH cte AS (
             SELECT
-                r.RegionName as SALEREGION
-                ,SUM(f.SaleDollars) as SALESUM
-                ,COUNT(f.SaleID) as SALECOUNT
-            FROM sales.fctSales f
-            INNER JOIN sales.dimRegions r
-            ON r.RegionID = f.fk_region
-            WHERE f.ActiveFlag = 1
-            GROUP BY ROLLUP (r.RegionName)
-        ) 
-        UNION   
-        SELECT 'TARGET', 4000, 20 from dual;
+                Coalesce(saleRegion, 'GLOBAL') as saleRegion
+                ,saleSum
+                ,saleCount
+            FROM 
+            (
+                SELECT
+                    r.RegionName as SALEREGION
+                    ,SUM(f.SaleDollars) as SALESUM
+                    ,COUNT(f.SaleID) as SALECOUNT
+                FROM sales.fctSales f
+                INNER JOIN sales.dimRegions r
+                ON r.RegionID = f.fk_region
+                WHERE f.ActiveFlag = 1
+                GROUP BY ROLLUP (r.RegionName)
+            ) 
+            UNION   
+            SELECT 'TARGET', 4000, 20 from dual
+        )
+        SELECT * FROM cte
+        ORDER BY
+        CASE WHEN SALEREGION <> 'GLOBAL' AND SALEREGION <> 'TARGET' THEN SALEREGION END ASC,
+        CASE WHEN SALEREGION = 'GLOBAL' THEN 2
+        WHEN SALEREGION = 'TARGET' THEN 3 ELSE 1 END;
+        
     END prc_get_saleskpis;
 
     PROCEDURE prc_get_salesbymonth(ResultData Out sys_RefCursor)
@@ -52,6 +60,7 @@ CREATE OR REPLACE PACKAGE BODY sales.pkg_dash AS
         SELECT
             trunc(f.FK_Date, 'MM') AS SALEMONTH
             ,SUM(f.SaleDollars) AS SALESUM
+            ,ROUND(RATIO_TO_REPORT(SUM(f.SaleDollars)) OVER () * 100, 0) as PCT
         FROM fctSales f 
         WHERE f.ActiveFlag = 1
         GROUP BY trunc(f.FK_Date, 'MM')
@@ -63,6 +72,7 @@ CREATE OR REPLACE PACKAGE BODY sales.pkg_dash AS
         SELECT
             r.RegionName AS SALEREGION
             ,SUM(f.SaleDollars) AS SALESUM
+            ,ROUND(RATIO_TO_REPORT(SUM(f.SaleDollars)) OVER () * 100, 0) as PCT
         FROM fctSales f
         INNER JOIN dimRegions r
         ON f.FK_Region = r.RegionID

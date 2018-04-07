@@ -5,8 +5,7 @@
 		</div>
 		<div class="graph">
 			<div
-			class="graph--bar heat" *ngFor="let sale of monthlysales"
-			[ngStyle]="{'background-color': 'rgba(255, 69, 0,' + (sale.SALESUM / maxmonthlysale) + ')'}" [style.flex]="sale.PORTION/2" [style.height.rem]="maxheight/2">
+			class="graph--bar heat" *ngFor="let sale of sMonthly" [style.flex]="sale.PCT" [style.height.rem]="maxheight/2">
 				{{ sale.SALEMONTH.split("T")[0] | date:'MMM' }}
 				<br>
 				{{ sale.SALESUM | currency:'USD':'symbol':'1.0-0' }}
@@ -19,7 +18,7 @@
 				Sales by Region
 		</div>
 		<div class="graph">
-			<div class="graph--bar" [ngStyle]="{'background-color': 'rgba(255, 69, 0,' + (sale.SALESUM / maxregionalsale) + ')'}" *ngFor="let sale of regionalsales" [style.height]="sale.PORTION/2 + 'rem'">
+			<div class="graph--bar" *ngFor="let sale of sRegionally" [style.height]="sale.PCT/2 + 'rem'">
 				{{ sale.SALEREGION }}
 				<br>
 				{{ sale.SALESUM | currency:'USD':'symbol':'1.0-0' }}

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { SalesService } from '../../../services/sales.service';
 
 @Component({
@@ -8,36 +8,17 @@ import { SalesService } from '../../../services/sales.service';
 })
 export class ChartComponent implements OnInit {
 
-	public monthlysales: any[];
-	public maxmonthlysale = Number; // for rgbA value
-	public regionalsales: any[];
-	public maxregionalsale:Number; // for rgbA value
+    @Input() sMonthly: any[];
+    @Input() sRegionally: any[];
 	public maxheight: Number;
 
-	constructor(private saleService: SalesService) {
+	constructor() {
 
 	}
 
 	ngOnInit() {
-		this.saleService.getMonthly()
-			.subscribe(data => {
-				this.monthlysales = data['sales'];
-				let sum = this.monthlysales.reduce((a, b) => a + b.SALESUM, 0);
-				// issue chaining in TS and new Dates in sort
-				this.monthlysales.map(item => item.PORTION = Math.round(item.SALESUM / sum * 100));
-				this.monthlysales.sort((a,b) => a.SALEMONTH - b.SALEMONTH);
-				this.maxmonthlysale = Math.max.apply(Math, this.monthlysales.map(item => item.SALESUM));
-			});
+        this.maxheight = Math.max.apply(Math, this.sRegionally.map(item => item.PCT));
 
-		this.saleService.getRegionally()
-			.subscribe(data => {
-				this.regionalsales = data['sales'];
-				let sum = this.regionalsales.reduce((a, b) => a + b.SALESUM, 0);
-				this.regionalsales.map(item => item.PORTION = Math.round(item.SALESUM / sum * 100));
-				this.regionalsales.sort((a,b) => b.SALESUM - a.SALESUM);
-				this.maxregionalsale = Math.max.apply(Math, this.regionalsales.map(item => item.SALESUM));
-				this.maxheight = Math.max.apply(Math, this.regionalsales.map(item => item.PORTION));
-			});
 	}
 
 }

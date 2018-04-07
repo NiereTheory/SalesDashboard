@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { SalesService } from '../../../services/sales.service';
 
 @Component({
@@ -8,24 +8,14 @@ import { SalesService } from '../../../services/sales.service';
 })
 export class KpiComponent implements OnInit {
 
-	public kpis: any[];
+    @Input() sKpis: any[];
 
-	constructor(private saleService: SalesService) {
+	constructor() {
 
 	}
 
 	ngOnInit() {
-		this.saleService.getKpis()
-			.subscribe(
-				data => {
-				// this.kpis = data['kpis'].sort((a,b) => a.SALESUM - b.SALESUM);
-					this.kpis = data['kpis'];
-					this.kpis.sort((a,b) => a.SALEREGION.localeCompare(b.SALEREGION));
-					let globalObj = this.kpis.splice(this.kpis.findIndex(item => item.SALEREGION === 'GLOBAL'), 1);
-					let targetObj = this.kpis.splice(this.kpis.findIndex(item => item.SALEREGION === 'TARGET'), 1);
-					this.kpis = this.kpis.concat(globalObj, targetObj);
-				}
-			);
+		
 	}
 
 }
