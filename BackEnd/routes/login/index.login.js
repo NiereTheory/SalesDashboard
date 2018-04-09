@@ -4,6 +4,7 @@ const jwt = require('jsonwebtoken');
 oracledb.outFormat = oracledb.OBJECT;
 
 const config = require('../../config');
+const authenticate = require('../../middleware/auth');
 
 const router = express.Router();
 
@@ -28,7 +29,7 @@ router.post('/', async (req, res) => {
                 id: response.userid
             }
             , config.secret
-            , { expiresIn: '5m' }
+            , { expiresIn: '2h' }
         );
 		res.send({response, token});
 	} catch (err) {
@@ -38,6 +39,15 @@ router.post('/', async (req, res) => {
 			await conn.close();
 		}
 	}
+});
+
+router.get('/valid', authenticate, async(req, res) => {
+    try {
+        res.status(200).send({success: true});
+    }
+    catch (err) {
+        res.status(401).send();
+    }
 });
 
 module.exports = router;

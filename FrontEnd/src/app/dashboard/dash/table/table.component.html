@@ -1,7 +1,36 @@
 <div class="tables">
+    <div class="table__div">
+        <h2 class="table__header">Top Sales All Time</h2>
+        <div class="tbl__wrapper">
+            <table class="table">
+                <thead>
+                    <tr class="tbl__row tbl__row--header">
+                        <th class="tbl__th">Rep</th>
+                        <th class="tbl__th">Date</th>
+                        <th class="tbl__th">Region</th>
+                        <th class="tbl__th">Amount</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="tbl__row tbl__row--data" *ngFor="let sale of sTop">
+                        <td>{{ sale.SALEEMPLOYEE }}</td>
+                        <td>{{ sale.SALEDATE.split("T")[0] | date: 'MMM d, y' }}</td>
+                        <td>{{ sale.SALEREGION }}</td>
+                        <td>{{ sale.SALEAMOUNT | currency:'USD':'symbol':'1.0-0' }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
 	<div class="table__div">
-		<h2 class="table__header">My Recent Sales</h2>
-		<div class="tbl__wrapper">
+        <h2 class="table__header">My Recent Sales</h2>
+        <div *ngIf="!sEmployee">
+            <div class="loginheading">
+                Please <a routerLink="/login">login</a> to view your most recent sales
+            </div>
+        </div>
+		<div *ngIf="sEmployee" class="tbl__wrapper">
 			<table class="table">
 				<thead>
 					<tr class="tbl__row tbl__row--header">
@@ -21,30 +50,5 @@
 				</tbody>
 			</table>
 		</div>
-
-	</div>
-
-	<div class="table__div">
-		<h2 class="table__header">Top Sales</h2>
-		<div class="tbl__wrapper">
-			<table class="table">
-				<thead>
-					<tr class="tbl__row tbl__row--header">
-						<th class="tbl__th">Rep</th>
-						<th class="tbl__th">Date</th>
-						<th class="tbl__th">Region</th>
-						<th class="tbl__th">Amount</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr class="tbl__row tbl__row--data" *ngFor="let sale of sTop">
-						<td>{{ sale.SALEEMPLOYEE }}</td>
-						<td>{{ sale.SALEDATE.split("T")[0] | date: 'MMM d, y' }}</td>
-						<td>{{ sale.SALEREGION }}</td>
-						<td>{{ sale.SALEAMOUNT | currency:'USD':'symbol':'1.0-0' }}</td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
-	</div>
+    </div>
 </div>

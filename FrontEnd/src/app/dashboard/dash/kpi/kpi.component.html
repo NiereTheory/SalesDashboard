@@ -1,4 +1,4 @@
-<div class="kpis">
+<div class="kpis" *ngIf="sKpis">
 	<div *ngFor="let kpi of sKpis" class="kpi__card">
 		<div class="kpi__card--header">
 			{{ kpi.SALEREGION }}

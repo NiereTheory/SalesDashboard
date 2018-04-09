@@ -17,8 +17,7 @@ export class ChartComponent implements OnInit {
 	}
 
 	ngOnInit() {
-        this.maxheight = Math.max.apply(Math, this.sRegionally.map(item => item.PCT));
-
+        // this.maxheight = Math.max.apply(Math, this.sRegionally.map(item => item.PCT));
 	}
 
 }

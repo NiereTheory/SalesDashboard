@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SalesService } from '../../services/sales.service';
 import { Observable } from 'rxjs/Observable';
+import { LoginService } from '../../services/login.service';
 
 @Component({
 	selector: 'app-dash',
@@ -9,48 +10,35 @@ import { Observable } from 'rxjs/Observable';
 })
 export class DashComponent implements OnInit {
 
-	constructor(private saleService: SalesService) {
+	constructor(private saleService: SalesService, private loginSerivce: LoginService) {
 
     }
 
-    sKpis: any[];
-    sTop: any[];
-    sMonthly: any[];
-    sRegionally: any[];
-    sEmployee: any[];
+    sKpis;
+    sTop;
+    sMonthly;
+    sRegionally;
+    sEmployee;
     res;
 
-	ngOnInit() {
-        try {
-            if (this.saleService.getUpdateRequired()) {
-                const kpis = this.saleService.getKpis();
-                const top = this.saleService.getTop();
-                const monthly = this.saleService.getMonthly();
-                const regionally = this.saleService.getRegionally();
-                const employee = this.saleService.getByEmployee(localStorage.getItem("token"));
-        
-                Observable.forkJoin([kpis, top, monthly, regionally, employee]).subscribe((res) => {
-                    this.saleService.setAll(res);
-                    this.sKpis = res[0]['kpis'];
-                    this.sTop = res[1]['sales'];
-                    this.sMonthly = res[2]['sales'];
-                    this.sRegionally = res[3]['sales'];
-                    this.sEmployee = res[4]['sales'];
-                    this.saleService.setUpdateRequired(false);
-                    this.res = res;
-                });
-
-            } else {
-                this.res = this.saleService.getAll();
-                this.sKpis = this.res[0]['kpis']
-                this.sTop = this.res[1]['sales'];
-                this.sMonthly = this.res[2]['sales'];
-                this.sRegionally = this.res[3]['sales'];
-                this.sEmployee = this.res[4]['sales'];
+	async ngOnInit() {
+        if (this.saleService.getUpdateRequired()) {
+            this.sKpis = await this.saleService.getKpis();
+            this.sMonthly = await this.saleService.getMonthly();
+            this.sRegionally = await this.saleService.getRegionally();
+            this.sTop = await this.saleService.getTop();
+            try {
+                this.sEmployee = await this.saleService.getByEmployee(this.loginSerivce.userToken);
+            } catch(err) {
+                this.sEmployee = undefined;
             }
-        }
-        catch {
-            console.log('error');
+            //TODO maybe a promise.all here?
+        } else {
+            this.sKpis = this.saleService.sKpis;
+            this.sMonthly = this.saleService.sMonthly;
+            this.sRegionally = this.saleService.sRegionally;
+            this.sTop = this.saleService.sTop;
+            this.sEmployee = this.saleService.sEmployee;
         }
 	}
 }

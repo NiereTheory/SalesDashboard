@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 
 import { NewService } from '../../services/new.service';
 import { SalesService } from '../../services/sales.service';
 
 import { Sale } from '../../models/newsales';
+
 
 @Component({
 	selector: 'app-entryform',
@@ -13,14 +15,18 @@ import { Sale } from '../../models/newsales';
 })
 export class EntryformComponent implements OnInit {
 
-	constructor(private newService: NewService, private saleService: SalesService) { }
+    constructor(
+        private newService: NewService, 
+        private saleService: SalesService,
+        private router: Router
+    ) { }
 	
 	public months: any[];
 	public regions: any[];
 	public employees: any[];
 	public submitNewDisabled: boolean;
 	
-	onSubmit(entryForm: NgForm) {
+	async onSubmit(entryForm: NgForm) {
 		if (entryForm.valid) {
 			this.submitNewDisabled = true;
 			let sale: Sale = {
@@ -28,19 +34,29 @@ export class EntryformComponent implements OnInit {
 				Employee: entryForm.value.Employee,
 				Dollars: entryForm.value.Dollars,
 				Date: `${entryForm.value.day}-${entryForm.value.month}-18`
-			}
-			this.newService.addSale(sale)
-				.subscribe(data => {
-				    entryForm.reset();
-                    this.submitNewDisabled = false;
-                    this.saleService.setUpdateRequired(true);
-			});
+            }
+            try {
+                let x = await this.newService.addSale(sale);
+                entryForm.reset();
+            }
+            catch (err) {
+                if (err.status == 401) {
+                    alert('Login expired - sending you there now');
+                    this.router.navigate(['/login']);
+                } else {
+                    alert('Looks like you have some invalid input data...maybe a bad date? Try again!');
+                }
+            }
+            finally {
+                this.submitNewDisabled = false;
+                this.saleService.setUpdateRequired(true);
+            } 
 		} else {
 			console.log('Failed');
 		}    
 	}
 	
-	ngOnInit() {
+	async ngOnInit() {
     	this.months = [
     		{ name: 'January', val: 'JAN' },
     		{ name: 'February', val: 'FEB' },
@@ -56,25 +72,10 @@ export class EntryformComponent implements OnInit {
     		// { name: 'December', val: 'DEC' }
     	];
     	
-    	if (this.newService.hasEmployees()) {
+    	if (this.newService.getLoadedEmployees()) {
             this.employees = this.newService.getLoadedEmployees();
         } else {
-            this.newService.getEmployees()
-                .subscribe(data => {
-                    this.employees = data['employees'];
-                    this.newService.setEmployees(data['employees']);
-                });
-	    }
-        
-    
-        if (this.newService.hasRegions()) {
-            this.regions = this.newService.getLoadedRegions();
-        } else {
-            this.newService.getRegions()
-                .subscribe(data => {
-                    this.regions = data['regions'];
-                    this.newService.setRegions(data['regions']);
-                });
-	    }
+            this.employees = await this.newService.getEmployees();
+        }
     }
 }

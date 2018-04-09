@@ -6,7 +6,8 @@
 }
 
 .table__div {
-	flex: 1;
+    flex: 1;
+    background-color: var(--color-primary-white);
 }
 
 .table__div:not(:last-child) {
@@ -50,6 +51,12 @@
 .tbl__row--data:hover {
 	background-color: var(--color-dark-blue);
 	color: var(--color-primary-white);
+}
+
+.loginheading {
+    font-size: 2rem;
+    text-align: center;
+    padding: 2rem;
 }
 
 @media only screen and (max-width: 800px) {
