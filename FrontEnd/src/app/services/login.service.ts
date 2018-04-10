@@ -18,7 +18,24 @@ export class LoginService {
         }
         let activeUser = await this.http.post('http://127.0.0.1:3000/api/login', user, headers).toPromise();
         this.userToken = activeUser['token'];
+        localStorage.setItem('salesdashtoken', this.userToken.toString());
         this.userID = activeUser['response']['userid'];
+    }
+
+    async validateToken() {
+        const headers = {
+            headers: new HttpHeaders({
+                'Content-Type': 'application/json'
+            })
+        }
+        try {
+            console.log()
+            let activeUser = await this.http.post('http://127.0.0.1:3000/api/login/valid', localStorage.getItem('salesdashtoken'), headers).toPromise();
+            return '123';
+        }
+        catch (err) {
+            return false;
+        }
     }
 
     logoutUser() {

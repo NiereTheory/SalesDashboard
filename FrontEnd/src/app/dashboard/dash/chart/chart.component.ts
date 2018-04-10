@@ -10,14 +10,16 @@ export class ChartComponent implements OnInit {
 
     @Input() sMonthly: any[];
     @Input() sRegionally: any[];
-	public maxheight: Number;
 
 	constructor() {
 
-	}
+    }
+    
+    ngOnInit() { 
+    }
 
-	ngOnInit() {
-        // this.maxheight = Math.max.apply(Math, this.sRegionally.map(item => item.PCT));
+	getMaxHeight() {
+        return Math.max.apply(Math, this.sRegionally.map(item => item.PCT/2));
 	}
 
 }

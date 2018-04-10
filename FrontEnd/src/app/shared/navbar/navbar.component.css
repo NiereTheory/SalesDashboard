@@ -10,7 +10,7 @@
 .nav__list--link {
 	text-decoration: none;
 	color: var(--color-primary-white);
-	padding: 1rem 2rem;
+	padding: 1rem;
 }
 
 .nav__list--item:first-child {

@@ -41,13 +41,13 @@ router.post('/', async (req, res) => {
 	}
 });
 
-router.get('/valid', authenticate, async(req, res) => {
-    try {
-        res.status(200).send({success: true});
-    }
-    catch (err) {
-        res.status(401).send();
-    }
-});
+// router.get('/valid', authenticate, async(req, res) => {
+//     try {
+//         res.status(200).send({success: true});
+//     }
+//     catch (err) {
+//         res.status(401).send();
+//     }
+// });
 
 module.exports = router;

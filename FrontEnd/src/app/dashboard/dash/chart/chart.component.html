@@ -1,27 +1,27 @@
-<div class="charts">
-	<div *ngIf="sMonthly" class="chart__graph">
+<div *ngIf="sMonthly && sRegionally" class="charts">
+	<div class="chart__graph">
 		<div class="graph--header">
 			Sales by Month
 		</div>
-		<div class="graph">
+		<div class="graph heat">
 			<div
-			class="graph--bar heat" *ngFor="let sale of sMonthly" [style.flex]="sale.PCT" [style.height.rem]="maxheight/2">
+			class="graph--bar heat" *ngFor="let sale of sMonthly" [style.flex]="sale.PCT" [style.height.rem]="getMaxHeight()">
+                {{ sale.SALESUM | currency:'USD':'symbol':'1.0-0' }}
+                <br>
 				{{ sale.SALEMONTH.split("T")[0] | date:'MMM' }}
-				<br>
-				{{ sale.SALESUM | currency:'USD':'symbol':'1.0-0' }}
 			</div>
 		</div>
 	</div>	
 	
-	<div *ngIf="sRegionally" class="chart__graph">
+	<div class="chart__graph">
 		<div class="graph--header">
 				Sales by Region
 		</div>
 		<div class="graph">
 			<div class="graph--bar" *ngFor="let sale of sRegionally" [style.height]="sale.PCT/2 + 'rem'">
-				{{ sale.SALEREGION }}
-				<br>
 				{{ sale.SALESUM | currency:'USD':'symbol':'1.0-0' }}
+				<br>
+				{{ sale.SALEREGION }}
 			</div>
 		</div>
 	</div>	

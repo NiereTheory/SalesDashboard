@@ -1,6 +1,4 @@
 .tables {
-	margin-bottom: 2rem;
-
 	display: flex;
 	flex-flow: row wrap;
 }
@@ -8,6 +6,7 @@
 .table__div {
     flex: 1;
     background-color: var(--color-primary-white);
+    box-shadow: 0 .5rem 1rem 0 var(--color-light-black);
 }
 
 .table__div:not(:last-child) {
@@ -26,7 +25,6 @@
 .tbl__wrapper {
 	padding: 0 .5rem;
 	background-color: var(--color-primary-white);
-	box-shadow: 0 .5rem 1rem 0 var(--color-light-black);
 	font-size: 1.75rem;
 }
 

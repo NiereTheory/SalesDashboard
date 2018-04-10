@@ -1,4 +1,10 @@
-.nav__list {
+.footer__copy {
+    width: 100%;
+    text-align: center;
+    font-size: 1.5rem;
+}
+
+/* .nav__list {
 	display: flex;
 	flex-flow: row;
 	align-items: center;
@@ -45,4 +51,4 @@
 	.nav__list--links {
 		padding: 0;
 	}
-}
+} */
