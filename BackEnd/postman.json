@@ -1,33 +1,259 @@
 {
-	"variables": [],
 	"info": {
-		"name": "Employees",
-		"_postman_id": "60d10378-d79e-f2c7-a530-6028aabd9dea",
-		"description": "Full Stack Oracle",
-		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+		"_postman_id": "d9ef896e-7d0e-4ac1-82a4-898e659bdb34",
+		"name": "SalesDashboard",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
-			"name": "Get All Employees",
-			"request": {
-				"url": "http://127.0.0.1:3000/api/employees/",
-				"method": "GET",
-				"header": [],
-				"body": {},
-				"description": "http://127.0.0.1:3000/api/employees/proc/"
-			},
-			"response": []
+			"name": "Dash",
+			"description": "",
+			"item": [
+				{
+					"name": "KPIs",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "{{url}}/api/sales/kpis",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"sales",
+								"kpis"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Monthly",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "{{url}}/api/sales/monthly",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"sales",
+								"monthly"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Regionally",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "{{url}}/api/sales/regionally",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"sales",
+								"regionally"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Top Sales",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "{{url}}/api/sales/top",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"sales",
+								"top"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "EmployeeID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "{{url}}/api/sales/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"sales",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		},
 		{
-			"name": "Get One Employee",
-			"request": {
-				"url": "http://127.0.0.1:3000/api/employees/100",
-				"method": "GET",
-				"header": [],
-				"body": {},
-				"description": "http://127.0.0.1:3000/api/employees/proc/100"
-			},
-			"response": []
+			"name": "Entry",
+			"description": "",
+			"item": [
+				{
+					"name": "Get Regions",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "{{url}}/api/new/regions",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"new",
+								"regions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Employees",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "{{url}}/api/new/employees",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"new",
+								"employees"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Post new sale",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxNTIzMjM1NTIzLCJleHAiOjE1MjMyMzU4MjN9.pUez-8i3T8Cwz4ToEaW1PjVwHiC_qYszo-BjjDsh9Q0"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"Region\": 1,\n\t\"Employee\": 1,\n\t\"Dollars\": 200,\n\t\"Date\": \"03-MAR-18\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/api/new/sale",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"new",
+								"sale"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Login",
+			"description": "",
+			"item": [
+				{
+					"name": "Login Ben",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"user\": \"JL\",\n\t\"pass\": \"test\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/api/login/",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"login",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Test Auth",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxNTIzMjIwMTAwLCJleHAiOjE1MjMyMjA0MDB9.nJ-oMoJFGMAryeO81krVpOymzDXDIIebPnD3gOJboSI"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"user\": \"BN\",\n\t\"pass\": \"test\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/api/sales/mine",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"sales",
+								"mine"
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		}
 	]
 }
