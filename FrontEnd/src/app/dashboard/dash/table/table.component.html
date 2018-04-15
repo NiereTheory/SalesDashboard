@@ -1,5 +1,5 @@
 <div class="tables">
-    <div class="table__div">
+    <div *ngIf="sTop" class="table__div">
         <h2 class="table__header">Top Sales All Time</h2>
         <div class="tbl__wrapper">
             <table class="table">
@@ -23,7 +23,7 @@
         </div>
     </div>
 
-	<div class="table__div">
+	<div *ngIf="sTop" class="table__div"> <!-- forcing load together -->
         <h2 class="table__header">My Recent Sales</h2>
         <div *ngIf="!sEmployee">
             <div class="loginheading">

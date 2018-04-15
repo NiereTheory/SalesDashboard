@@ -11,7 +11,7 @@ const app = express();
 // app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-app.use(morgan(config.env));
+// app.use(morgan(config.env));
 
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
@@ -23,3 +23,4 @@ app.use(function(req, res, next) {
 app.use('/api', routes);
 
 app.listen(config.port, () => console.log('Example app listening on port 3000!'))
+// module.exports = app;

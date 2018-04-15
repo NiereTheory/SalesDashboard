@@ -19,7 +19,7 @@ export class LoginService {
         let activeUser = await this.http.post('http://127.0.0.1:3000/api/login', user, headers).toPromise();
         this.userToken = activeUser['token'];
         localStorage.setItem('salesdashtoken', this.userToken.toString());
-        this.userID = activeUser['response']['userid'];
+        this.userID = activeUser['userID'];
     }
 
     async validateToken() {

@@ -3,7 +3,7 @@
     margin: 0 auto;
 }
 
-.form {
+.form, .formgroup__button {
     display: flex;
     flex-flow: column;
     align-items: center;
