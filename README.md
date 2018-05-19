@@ -31,7 +31,7 @@ Connect to the DB instance endpoint via SQL Developer and we create:
 </ul>
 
 Since we're mocking a data warehouse, our star schema should look as such:<br>
-![Alt text](/ReadMeHelper/schema.png?raw=true "Schema Design")
+![Schema Design](/ReadMeHelper/schema.png?raw=true)
 
 #### NODE/EXPRESS
 
@@ -50,9 +50,9 @@ Here we want to setup our back-end routes and interact with our DB instance we d
 Using the angular cli, we setup a project and begin building components, services, and the displayed (responsive) html/css our users will view:
 
 Dashboard: <br>
-![Alt text](/ReadMeHelper/dashboard.png?raw=true "Dashboard Page") <br><br>
+![Dashboard Page](/ReadMeHelper/dashboardpage.png?raw=true) <br><br>
 Sales entry: <br>
-![Alt text](/ReadMeHelper/salesentry.png?raw=true "Sales Page") <br><br>
+![Sales Entry Page](/ReadMeHelper/salesentry.png?raw=true) <br><br>
 Login / Logout: <br>
 simple forms re-using the custom CSS seen in the sales entry form
 
