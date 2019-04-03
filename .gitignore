@@ -1,7 +1,12 @@
 node_modules
+dist
 
 Legacy
 legacy
+
 ToDo.txt
 
 config.js
+
+.VS_CODE
+.DS_Store

@@ -1,0 +1,20 @@
+{
+    "type": "postgres",
+    "host": "host.docker.internal",
+    "port": 5432,
+    "username": "postgres",
+    "password": "postgres",
+    "database": "salesdashboard",
+    "synchronize": true,
+    "dropSchema": false,
+    "logging": true,
+    "entities": [
+        "dist/entity/**/*.js"
+    ],
+    "migrations": [
+        "src/migration/**/*.ts"
+    ],
+    "subscribers": [
+        "src/subscriber/**/*.ts"
+    ]
+}

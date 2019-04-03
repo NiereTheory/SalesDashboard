@@ -1,5 +1,7 @@
 # Sales Dashboard
 
+<i>Refactoring WIP</i>
+
 Dashboard: <br>
 ![Dashboard Page](/ReadMeHelper/dashboardpage.png?raw=true) <br><br>
 Sales entry: <br>

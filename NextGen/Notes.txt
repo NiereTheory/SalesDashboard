@@ -1,0 +1,12 @@
+Relationships look setup...can we start the API?
+Creation of seller...handle this in Data folder via python?
+
+await entityManager.insert(Child, { parent: { id: 1 } as Parent });
+
+
+--
+
+THINGS RUNNING
+
+Postgres container
+Node container

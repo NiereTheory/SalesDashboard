@@ -1,0 +1,5 @@
+Actual docker file not needed, ran the below:
+docker run --name salesdb -e POSTGRES_PASSWORD=postgres -p 5432:5432 -d postgres
+
+For ad-hoc change:
+docker cp NextGen/ormconfig.json <container_id>:/app
