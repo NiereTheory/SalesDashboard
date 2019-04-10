@@ -3,7 +3,7 @@
 <i>Refactoring WIP</i>
 
 Dashboard: <br>
-![Dashboard Page](/ReadMeHelper/dashboardpage.png?raw=true) <br><br>
+![Dashboard Page](/ReadMeHelper/dashboardsplash.png?raw=true) <br><br>
 Sales entry: <br>
 ![Sales Entry Page](/ReadMeHelper/salesentry.png?raw=true) <br><br>
 Login / Logout: <br>
@@ -14,7 +14,7 @@ The purpose of this project is to implement a simple full stack application wher
 
 Technology components:
 <ul>
-    <li><b>Database</b>: Oracle (docker)</li>
-    <li><b>API</b>: Node ExpressJS
+    <li><b>Database</b>: Postgres (docker)</li>
+    <li><b>API</b>: Node ExpressJS with Typescript (docker)
     <li><b>SPA</b>: Angular
 </ul>

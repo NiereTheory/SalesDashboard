@@ -2,8 +2,8 @@ import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateCol
 import { Region } from './region.entity';
 import { Seller } from './seller.entity';
 // We'll assume there is one line per sale and no referential products/sub-volumes to simplify things
-@Entity()
-export class Sales {
+@Entity({ name: 'sales' })
+export class Sale {
     @PrimaryGeneratedColumn()
     id: number;
 

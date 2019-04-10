@@ -1,0 +1,12 @@
+<div class="chart__graph">
+    <div class="graph--header">
+        Sales by Region
+    </div>
+    <div class="graph" [style.height.vh]="maxHeight">
+        <div class="graph--bar" *ngFor="let sale of salesByRegion"
+            [style.height.vh]="getRegionHeight(sale.summedAmount)">
+            <span>{{ sale.summedAmount | currency:'USD':'symbol':'1.0-0' }}</span>
+            <span>{{ sale.region }}</span>
+        </div>
+    </div>
+</div>

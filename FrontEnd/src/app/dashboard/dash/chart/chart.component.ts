@@ -1,25 +1,66 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnChanges } from '@angular/core';
+import { Sale } from '../../../models/sale';
+import { MonthlySales } from '../../../models/monthly.sales';
+import { RegionalSales } from '../../../models/regional.sales';
 import { SalesService } from '../../../services/sales.service';
 
 @Component({
-	selector: 'dash-chart',
-	templateUrl: './chart.component.html',
-	styleUrls: ['./chart.component.css']
+    selector: 'app-dash-chart',
+    templateUrl: './chart.component.html',
+    styleUrls: ['./chart.component.css']
 })
-export class ChartComponent implements OnInit {
+export class ChartComponent implements OnInit, OnChanges {
 
-    @Input() sMonthly: any[];
-    @Input() sRegionally: any[];
+    componentReady = false;
+    @Input() sales: Sale[];
+    salesByMonth: MonthlySales[] = [];
+    salesByRegion: RegionalSales[];
+    monthNames: string[] = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+    maxHeight = 25;
 
-	constructor() {
+    constructor(private salesService: SalesService) {
 
     }
-    
-    ngOnInit() { 
+
+    ngOnInit() {
+        this.componentReady = true;
     }
 
-	getMaxHeight() {
-        return Math.max.apply(Math, this.sRegionally.map(item => item.PCT/2));
-	}
+    ngOnChanges() {
+        if (!this.componentReady) {
+            return;
+        }
+
+        let totalAmount = 0;
+        this.sales.forEach(sale => {
+            if (this.salesByMonth.some(r => r.month === this.monthNames[sale.saleDate.getMonth()])) {
+                this.salesByMonth
+                    .filter(m => m.month === this.monthNames[sale.saleDate.getMonth()])
+                    .map(r => {
+                        r.summedAmount += sale.amount;
+                    });
+            } else {
+                this.salesByMonth.push(new MonthlySales(
+                    this.monthNames[sale.saleDate.getMonth()],
+                    sale.saleDate.getMonth(),
+                    sale.amount
+                )
+                );
+            }
+            totalAmount += sale.amount;
+        });
+
+        this.salesByMonth.map(m => m.percentOfTotal = Number((m.summedAmount / totalAmount).toFixed(2)));
+        this.salesByMonth.sort((a, b) => a.monthInt - b.monthInt);
+    }
+
+    getMaxHeight(h: number) {
+        return h / this.maxHeight;
+    }
+
+    getRegionHeight(h: number) {
+        const max = Math.max(...this.salesByRegion.map(x => x.summedAmount));
+        return h / max * this.maxHeight - 3; // minus for padding
+    }
 
 }

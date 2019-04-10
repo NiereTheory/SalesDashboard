@@ -6,7 +6,7 @@
     "password": "postgres",
     "database": "salesdashboard",
     "synchronize": true,
-    "dropSchema": false,
+    "dropSchema": true,
     "logging": true,
     "entities": [
         "dist/entity/**/*.js"

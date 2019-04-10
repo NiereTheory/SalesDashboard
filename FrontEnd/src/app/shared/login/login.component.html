@@ -1,7 +1,8 @@
 <div class="logincontainer">
     <h4 class="formheader">Login for Functionality</h4>
 
-    <form class="form" (ngSubmit)="onSubmit(f)" #f="ngForm" ngNativeValidate>
+    <form class="form" #f="ngForm" ngNativeValidate>
+        <!-- (ngSubmit)="onSubmit(f)" -->
         <div class="formgroup">
             <label class="formgroup__label" for="username">Username</label>
             <input ngModel="BN12345" class="formgroup__input" type="text" name="username" value="BN" required>

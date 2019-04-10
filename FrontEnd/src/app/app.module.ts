@@ -19,6 +19,8 @@ import { EntryformComponent } from './newform/entryform/entryform.component';
 import { SalesService } from './services/sales.service';
 import { NewService } from './services/new.service';
 import { LoginService } from './services/login.service';
+import { MonthlyChartComponent } from './dashboard/dash/monthly-chart/monthly-chart.component';
+import { RegionalChartComponent } from './dashboard/dash/regional-chart/regional-chart.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +33,9 @@ import { LoginService } from './services/login.service';
     TableComponent,
     EntryformComponent,
     LoginComponent,
-    LogoutComponent
+    LogoutComponent,
+    MonthlyChartComponent,
+    RegionalChartComponent
   ],
   imports: [
     BrowserModule,

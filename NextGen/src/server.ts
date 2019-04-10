@@ -2,6 +2,7 @@ import 'reflect-metadata';
 import * as express from 'express';
 import * as morgan from 'morgan';
 import * as bodyParser from 'body-parser';
+import * as cors from 'cors';
 import { createConnection } from 'typeorm';
 
 import { SalesController } from './controllers/sales.controller';
@@ -15,6 +16,7 @@ createConnection().then(async connection => {
 
     app.use(bodyParser.json());
     app.use(morgan('dev'));
+    app.use(cors());
     app.disable('etag'); // remove general caching
 
     app.use('/api/v1/sales', SalesController);

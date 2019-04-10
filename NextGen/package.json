@@ -17,7 +17,8 @@
         "pg": "^7.9.0",
         "reflect-metadata": "0.1.13",
         "body-parser": "1.18.3",
-        "morgan": "1.9.1"
+        "morgan": "1.9.1",
+        "cors": "2.8.5"
     },
     "devDependencies": {
         "typescript": "^3.4.1",

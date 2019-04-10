@@ -1,14 +1,14 @@
-<div class="kpis" *ngIf="sKpis">
-	<div *ngFor="let kpi of sKpis" class="kpi__card">
-		<div class="kpi__card--header">
-			{{ kpi.SALEREGION }}
-		</div>
-		<div class="kpi__card--num pos">
-		<!-- [ngClass]="{ pos: kpi.SALEID > 0, neg: kpi.SALEID <= 0 }"> -->
-			{{ kpi.SALESUM | currency:'USD':'symbol':'1.0-0' }}
-		</div>
-		<div class="kpi__card--footer">
-			{{ kpi.SALECOUNT }} Sales
-		</div>
+<div class="kpis" *ngIf="salesByRegion">
+    <div *ngFor="let region of salesByRegion" class="kpi__card">
+        <div class="kpi__card--header">
+            {{ region.region }}
+        </div>
+        <div class="kpi__card--num pos">
+            <!-- [ngClass]="{ pos: kpi.SALEID > 0, neg: kpi.SALEID <= 0 }"> -->
+            {{ region.summedAmount | currency:'USD':'symbol':'1.0-0' }}
+        </div>
+        <div class="kpi__card--footer">
+            {{ region.saleCount }} Sales
+        </div>
     </div>
 </div>

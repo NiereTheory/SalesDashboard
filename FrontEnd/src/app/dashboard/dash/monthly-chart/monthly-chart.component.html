@@ -1,0 +1,12 @@
+<div class="chart__graph">
+    <div class="graph--header">
+        Sales by Region
+    </div>
+    <div class="graph" [style.height.vh]="maxHeight">
+        <div class="graph--bar" *ngFor="let sale of salesByMonth"
+            [style.height.vh]="getMonthlyHeight(sale.summedAmount)">
+            <span class="graph--bar-val">{{ sale.summedAmount / 1000 | currency:'USD':'symbol':'1.0-0' }}k</span>
+            <span class="graph--bar-axis">{{ sale.month | uppercase }}</span>
+        </div>
+    </div>
+</div>

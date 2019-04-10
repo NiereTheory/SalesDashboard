@@ -1,0 +1,22 @@
+{
+  "name": "Data",
+  "version": "1.0.0",
+  "description": "",
+  "main": "seed.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.18.0",
+    "faker": "^4.1.0"
+  },
+  "devDependencies": {
+    "@types/axios": "^0.14.0",
+    "@types/faker": "^4.1.5",
+    "@types/node": "^11.13.0",
+    "typescript": "^3.4.2"
+  }
+}
