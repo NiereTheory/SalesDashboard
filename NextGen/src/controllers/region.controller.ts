@@ -1,7 +1,6 @@
 import { Router, Request, Response } from 'express';
 import { getManager } from 'typeorm';
 import { Region } from '../entity/region.entity';
-import { PagedResponse } from '../shared/paged.response';
 
 const router: Router = Router();
 
