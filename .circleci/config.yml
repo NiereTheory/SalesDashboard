@@ -18,7 +18,7 @@ jobs:
       - run: cd NextGen && npm install
       - run: cd NextGen && npm run compile
       - run:
-          command: cd NextGen && npm run:prod
+          command: cd NextGen && npm run run:prod
           background: true
       - run:
           shell: /bin/sh
