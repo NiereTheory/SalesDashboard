@@ -16,7 +16,7 @@ jobs:
       - checkout
       - run: ls
       - run: cd NextGen && npm install
-      - run: npm run compile
+      - run: cd NextGen && npm run compile
       - run:
           command: cd NextGen && npm run:prod
           background: true
