@@ -1,7 +1,7 @@
 import { Router, Request, Response } from 'express';
 import { getManager } from 'typeorm';
 import { Seller } from '../entity/seller.entity';
-import { PagedResponse } from '../shared/paged.response';
+import { PagedResponse } from '../entity/paged.response';
 
 const router: Router = Router();
 
