@@ -34,6 +34,19 @@ router.get('/', async (req: Request, res: Response) => {
 
 });
 
+router.get('/:id', async (req: Request, res: Response) => {
+    const saleID = req.params.id;
+
+    const saleRepository = await getManager().getRepository(Sale);
+
+    const sale = await saleRepository.find({
+        relations: ['seller', 'region'],
+        where: { id: saleID }
+    });
+
+    res.send({ data: sale });
+});
+
 router.post('/', async (req: Request, res: Response) => {
     const newSale = req.body;
     const regionRepository = getManager().getRepository(Sale);
@@ -47,6 +60,7 @@ router.delete('/:id', async (req: Request, res: Response) => {
     await saleRepository.delete(saleID);
     res.status(204).send();
 });
+
 
 export { router as SalesController };
 

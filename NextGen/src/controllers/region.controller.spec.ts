@@ -7,13 +7,9 @@ describe('Test the root path', () => {
     beforeAll(() => {
     });
 
-    test('It should confirm a status of 200 for a GET response', async () => {
+    test('It tests GETting all regions', async () => {
         let res = await axios.get(`${baseUrl}/regions`);
         expect(res.status).toEqual(200);
-    });
-
-    test('It should response the GET method', async () => {
-        let res = await axios.get(`${baseUrl}/regions`);
         expect(res.data.data.length).toEqual(4);
     });
 
