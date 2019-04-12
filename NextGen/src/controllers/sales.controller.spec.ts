@@ -8,13 +8,13 @@ describe('Test the root path', () => {
     });
 
     test('It should confirm a status of 200 for a GET response', async () => {
-        let res = await axios.get(`${baseUrl}/regions`);
+        let res = await axios.get(`${baseUrl}/sales?startDate=2018-01-01&endDate=2018-01-31`);
         expect(res.status).toEqual(200);
     });
 
     test('It should response the GET method', async () => {
-        let res = await axios.get(`${baseUrl}/regions`);
-        expect(res.data.data.length).toEqual(4);
+        let res = await axios.get(`${baseUrl}/sales?startDate=2018-01-01&endDate=2018-12-31`);
+        expect(res.data.data.length).toEqual(1000);
     });
 
     afterAll(() => {

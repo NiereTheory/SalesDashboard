@@ -4,11 +4,11 @@
     "description": "",
     "main": "index.js",
     "scripts": {
-        "start:dev": "./node_modules/nodemon/bin/nodemon.js -e ts --exec \"npm run run:dev\"",
-        "run:dev": "tsc && node dist/server.js",
-        "run:prod": "node dist/server.js",
+        "dev:refresh": "./node_modules/nodemon/bin/nodemon.js -e ts --exec \"npm run dev:refresh:helper\"",
+        "dev:refresh:helper": "tsc && node dist/server.js",
+        "uat": "node dist/server.js",
+        "prod": "NODE_ENV=production node dist/server.js",
         "compile": "tsc",
-        "test:ts": "tsc && jest ./dist/**/*.spec.js --runInBand",
         "test": "jest ./dist/**/*.spec.js --runInBand"
     },
     "keywords": [],
