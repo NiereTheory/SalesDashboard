@@ -1,0 +1,11 @@
+.loading__text {
+    animation: flash .75s linear infinite;
+    text-align: center;
+    color: var(--color-dark-blue);
+}
+
+@keyframes flash {
+    50% {
+        opacity: 0;
+    }
+}

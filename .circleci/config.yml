@@ -23,5 +23,5 @@ jobs:
       - run:
           shell: /bin/sh
           command: 
-            wget --retry-connrefused --waitretry=1 --read-timeout=20 --timeout=15 -t 10 http://localhost:3000/api/v1/sales
+            wget --retry-connrefused --waitretry=1 --read-timeout=20 --timeout=15 -t 10 http://localhost:3000/api/v1/sales/100
       - run: cd NextGen && npm test

@@ -1,0 +1,26 @@
+<div *ngIf="topSales$ | async; else loading; let topSales" class="table__div">
+    <h2 class="table__header">Top Sales All Time</h2>
+    <div class="tbl__wrapper">
+        <table class="table">
+            <thead>
+                <tr class="tbl__row tbl__row--header">
+                    <th class="tbl__th">Rep</th>
+                    <th class="tbl__th">Date</th>
+                    <th class="tbl__th">Region</th>
+                    <th class="tbl__th">Amount</th>
+                </tr>
+            </thead>
+            <tbody class="tbl__body">
+                <tr class="tbl__row tbl__row--data" *ngFor="let sale of topSales">
+                    <td>{{ sale.firstName }} {{ sale.lastName }}</td>
+                    <td>{{ sale.saleDate | date: 'MMM d, y' }}</td>
+                    <td>{{ sale.region }}</td>
+                    <td>{{ sale.amount | currency:'USD':'symbol':'1.0-0' }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<ng-template #loading>
+    <app-loader [loadingText]="'Top Sales'"></app-loader>
+</ng-template>

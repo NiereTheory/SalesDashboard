@@ -1,55 +1,46 @@
-import { Component, OnInit, Input, OnChanges } from '@angular/core';
-import { Sale } from '../../../models/sale';
+import { Component, OnInit, Input, OnChanges, Output, EventEmitter } from '@angular/core';
+import { map, delay } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+
 import { RegionalSales } from '../../../models/regional.sales';
 import { SalesService } from '../../../services/sales.service';
+import { Sale } from '../../../models/sale';
 
 @Component({
     selector: 'app-dash-kpi',
     templateUrl: './kpi.component.html',
     styleUrls: ['./kpi.component.css']
 })
-export class KpiComponent implements OnChanges, OnInit {
+export class KpiComponent implements OnInit {
 
-    componentReady = false;
-    @Input() sales: Sale[];
-    salesByRegion: RegionalSales[] = [];
+    regionalSales$: Observable<RegionalSales[]>;
 
-    constructor(private salesService: SalesService) {
-
-    }
+    constructor(private salesService: SalesService) { }
 
     ngOnInit() {
-        this.componentReady = true;
-    }
-
-    ngOnChanges() {
-        if (!this.componentReady) {
-            return;
-        }
-
-        const totalAmount = this.groupByRegion(this.sales);
-
-        this.salesByRegion.map(m => m.percentOfTotal = Number((m.summedAmount / totalAmount).toFixed(2)));
-        this.salesByRegion.push(new RegionalSales('Global', totalAmount, this.sales.length));
-        this.salesService.salesByRegion$.next(this.salesByRegion);
+        this.regionalSales$ = this.salesService.sales$.pipe(
+            map((arr: Sale[]) => this.groupByRegion(arr)),
+            // delay(1000),
+        );
     }
 
     groupByRegion(saleArr) {
         let totalAmount = 0;
-        this.sales.forEach(sale => {
-            if (this.salesByRegion.some(r => r.region === sale.region)) {
-                this.salesByRegion
-                    .filter(n => n.region === sale.region)
-                    .map(r => {
-                        r.summedAmount += sale.amount;
-                        r.saleCount++;
-                    });
+        const salesByRegion: RegionalSales[] = [];
+        saleArr.forEach(sale => {
+            const idx = salesByRegion.findIndex(existingObj => existingObj.region === sale.region);
+            if (idx > -1) {
+                salesByRegion[idx].summedAmount += sale.amount;
+                salesByRegion[idx].saleCount++;
             } else {
-                this.salesByRegion.push(new RegionalSales(sale.region, sale.amount, 1));
+                salesByRegion.push(new RegionalSales(sale.region, sale.amount, 1));
             }
             totalAmount += sale.amount;
         });
-
-        return totalAmount;
+        salesByRegion.map(m => m.percentOfTotal = Number((m.summedAmount / totalAmount).toFixed(2)));
+        salesByRegion.sort((a, b) => a.region.localeCompare(b.region));
+        const globalSummedAmount: number = salesByRegion.reduce((a: number, b: RegionalSales) => a + b.summedAmount, 0);
+        const globalSaleCount: number = salesByRegion.reduce((a: number, b: RegionalSales) => a + b.saleCount, 0);
+        return [...salesByRegion, new RegionalSales('GLOBAL', globalSummedAmount, globalSaleCount)];
     }
 }
