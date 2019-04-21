@@ -15,13 +15,13 @@ jobs:
     steps:
       - checkout
       - run: ls
-      - run: cd NextGen && npm install
-      - run: cd NextGen && npm run compile
+      - run: cd BackEnd && npm install
+      - run: cd BackEnd && npm run compile
       - run:
-          command: cd NextGen && npm run uat
+          command: cd BackEnd && npm run uat
           background: true
       - run:
           shell: /bin/sh
           command: 
             wget --retry-connrefused --waitretry=1 --read-timeout=20 --timeout=15 -t 10 http://localhost:3000/api/v1/sales/100
-      - run: cd NextGen && npm test
+      - run: cd BackEnd && npm test
