@@ -7,8 +7,7 @@ Dashboard Demo
 Login / Logout: <br>
 simple forms re-using the custom CSS seen in the sales entry form -->
 
-The purpose of this project is to implement a simple full stack application where the database servers as both a data warehouse and a front-end data source.
-
+The purpose of this project is to implement a full stack application that reports on fictitional sales data.
 
 Technology components:
 <ul>
