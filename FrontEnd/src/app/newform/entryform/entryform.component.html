@@ -2,7 +2,7 @@
 
     <h4 class="formheader">Enter New Sale</h4>
 
-    <form class="form" (ngSubmit)="onSubmit(f)" #f="ngForm" ngNativeValidate>
+    <form class="form" (ngSubmit)="onSubmit()" #f="ngForm" ngNativeValidate>
         <div class="formgroup">
             <label class="formgroup__label" for="region">Region</label>
             <select ngModel class="formgroup__input" name="Region" id="region" required>
@@ -24,7 +24,8 @@
 
         <div class="formgroup">
             <label class="formgroup__label" for="Dollars">Dollars</label>
-            <input ngModel class="formgroup__input" type="number" name="Dollars" id="amount" min="100" max="400" step="1" required>
+            <input ngModel class="formgroup__input" type="number" name="Dollars" id="amount" min="100" max="400"
+                step="1" required>
         </div>
 
         <div class="formgroup">
@@ -37,7 +38,8 @@
                     </select>
                 </div>
                 <div class="formgroup__date--part formgroup__day">
-                    <input ngModel class="formgroup__input" type="number" name="day" min="1" max="31" step="1" placeholder="Day" value="" required value="">
+                    <input ngModel class="formgroup__input" type="number" name="day" min="1" max="31" step="1"
+                        placeholder="Day" value="" required value="">
                 </div>
             </div>
         </div>

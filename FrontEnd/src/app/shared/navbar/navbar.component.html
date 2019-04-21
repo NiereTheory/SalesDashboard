@@ -10,7 +10,7 @@
 			<a routerLink="/about" class="nav__list--link">About</a>
 		</li> -->
         <li *ngIf="!loginService.userID" class="nav__list--item">
-            <a routerLink="/login" class="nav__list--link">Login</a>
+            <!-- <a routerLink="/login" class="nav__list--link">Login</a> -->
         </li>
         <li *ngIf="loginService.userID" class="nav__list--item">
             <a routerLink="/logout" class="nav__list--link">Logout</a>

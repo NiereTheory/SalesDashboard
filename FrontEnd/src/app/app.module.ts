@@ -12,8 +12,6 @@ import { LogoutComponent } from './shared/logout/logout.component';
 
 import { DashComponent } from './dashboard/dash/dash.component';
 import { KpiComponent } from './dashboard/dash/kpi/kpi.component';
-import { ChartComponent } from './dashboard/dash/chart/chart.component';
-import { TableComponent } from './dashboard/dash/table/table.component';
 import { EntryformComponent } from './newform/entryform/entryform.component';
 
 import { SalesService } from './services/sales.service';
@@ -21,33 +19,39 @@ import { NewService } from './services/new.service';
 import { LoginService } from './services/login.service';
 import { MonthlyChartComponent } from './dashboard/dash/monthly-chart/monthly-chart.component';
 import { RegionalChartComponent } from './dashboard/dash/regional-chart/regional-chart.component';
+import { LoaderComponent } from './shared/loader/loader.component';
+import { TopSalesTableComponent } from './dashboard/dash/top-sales-table/top-sales-table.component';
+import { MySalesTableComponent } from './dashboard/dash/my-sales-table/my-sales-table.component';
+import { TimePickerComponent } from './dashboard/dash/time-picker/time-picker.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    NavbarComponent,
-    FooterComponent,
-    DashComponent,
-    KpiComponent,
-    ChartComponent,
-    TableComponent,
-    EntryformComponent,
-    LoginComponent,
-    LogoutComponent,
-    MonthlyChartComponent,
-    RegionalChartComponent
-  ],
-  imports: [
-    BrowserModule,
-	  AppRoutingModule,
-    HttpClientModule,
-    FormsModule
-  ],
-  providers: [
-    SalesService, 
-    NewService,
-    LoginService
-  ],
-  bootstrap: [AppComponent]
+    declarations: [
+        AppComponent,
+        NavbarComponent,
+        FooterComponent,
+        DashComponent,
+        KpiComponent,
+        EntryformComponent,
+        LoginComponent,
+        LogoutComponent,
+        MonthlyChartComponent,
+        RegionalChartComponent,
+        LoaderComponent,
+        TopSalesTableComponent,
+        MySalesTableComponent,
+        TimePickerComponent
+    ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        HttpClientModule,
+        FormsModule
+    ],
+    providers: [
+        SalesService,
+        NewService,
+        LoginService
+    ],
+    bootstrap: [AppComponent]
 })
 export class AppModule { }

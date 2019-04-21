@@ -1,0 +1,50 @@
+.table__div {
+    background-color: var(--color-primary-white);
+    box-shadow: 0 .5rem 1rem 0 var(--color-light-black);
+
+    height: 35vh;
+    overflow: scroll;
+}
+
+.table__div:not(:last-child) {
+	margin-right: 2rem;
+}
+
+.table__header {
+	font-size: 1.75rem;
+	font-weight: 400;
+	text-transform: uppercase;
+	padding-left: .5rem;
+	color: white;
+	background-color: var(--color-dark-blue);
+}
+
+.tbl__wrapper {
+	padding: 0 .5rem;
+	background-color: var(--color-primary-white);
+	font-size: 1.75rem;
+}
+
+.table {
+	width: 100%;
+    border-collapse: collapse;
+}
+
+.tbl__th {
+	width: 100%;
+	text-align: left;
+	color: var(--color-light-blue);
+	font-weight: 500;
+}
+
+.tbl__row {
+	display: grid;
+	grid-template-columns: 1.3fr 1.3fr 1fr 1fr;
+	grid-gap: 1rem;
+}
+
+.loginheading {
+    font-size: 2rem;
+    text-align: center;
+    padding: 2rem;
+}

@@ -41,7 +41,8 @@
 	justify-content: space-between;
 	flex-flow: column;
 	flex: 1;
-    /* border-top: 1px solid var(--color-primary-orange); */
+    
+    min-height: 25%;
 }
 
 .graph--bar-axis {

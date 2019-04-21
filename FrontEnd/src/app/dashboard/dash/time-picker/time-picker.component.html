@@ -1,0 +1,6 @@
+<div class="date">
+    <div class="date__group" *ngFor="let date of dateRange; let i = index">
+        <button class="date__picker" (click)="changeDates(date.startDt, date.endDt, i)"
+            [ngClass]="selectedIdx == i ? 'active' : ''">{{ date.name | uppercase }}</button>
+    </div>
+</div>

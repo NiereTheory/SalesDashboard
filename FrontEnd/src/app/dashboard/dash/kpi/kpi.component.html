@@ -1,14 +1,16 @@
-<div class="kpis" *ngIf="salesByRegion">
-    <div *ngFor="let region of salesByRegion" class="kpi__card">
+<div class="kpis" *ngIf="regionalSales$ | async; else loading; let regionalSales">
+    <div *ngFor="let regionalSale of regionalSales" class="kpi__card">
         <div class="kpi__card--header">
-            {{ region.region }}
+            {{ regionalSale.region }}
         </div>
         <div class="kpi__card--num pos">
-            <!-- [ngClass]="{ pos: kpi.SALEID > 0, neg: kpi.SALEID <= 0 }"> -->
-            {{ region.summedAmount | currency:'USD':'symbol':'1.0-0' }}
+            {{ regionalSale.summedAmount | currency:'USD':'symbol':'1.0-0' }}
         </div>
         <div class="kpi__card--footer">
-            {{ region.saleCount }} Sales
+            {{ regionalSale.saleCount }} Sales
         </div>
     </div>
 </div>
+<ng-template #loading>
+    <app-loader [loadingText]="'KPIs'"></app-loader>
+</ng-template>

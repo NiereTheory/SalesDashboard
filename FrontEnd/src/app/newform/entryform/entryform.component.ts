@@ -26,6 +26,10 @@ export class EntryformComponent implements OnInit {
     public employees: any[];
     public submitNewDisabled: boolean;
 
+    onSubmit() {
+        // TODO
+    }
+
     // async onSubmit(entryForm: NgForm) {
     // 	if (entryForm.valid) {
     // 		this.submitNewDisabled = true;

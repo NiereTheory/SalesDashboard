@@ -1,4 +1,30 @@
 .dash {
     display: grid;
-    grid-gap: 2rem;
+    grid-gap: 1rem;
+    grid-template-areas: "time-picker time-picker"
+                          "dash-kpi dash-kpi"
+                          "monthly-chart regional-chart"
+                          "top-sales-table my-sales-table";
+    grid-template-rows: repeat(4, auto);
+    grid-template-columns: 1fr 1fr;
+}
+
+.time-picker { grid-area: time-picker }
+.dash-kpi { grid-area: dash-kpi }
+.regional-chart { grid-area: regional-chart }
+.monthly-chart { grid-area: monthly-chart }
+.top-sales-table { grid-area: top-sales-table }
+.my-sales-table { grid-area: my-sales-table }
+
+@media only screen and (max-width: 1000px) {
+    .dash {
+        grid-template-areas: "time-picker"
+                              "dash-kpi"
+                              "monthly-chart"
+                              "regional-chart"
+                              "top-sales-table"
+                              "my-sales-table";
+        grid-template-rows: repeat(6, auto);
+        grid-template-columns: 1fr;
+    }
 }

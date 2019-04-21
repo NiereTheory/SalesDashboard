@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+
 import { SalesService } from '../../services/sales.service';
-import { LoginService } from '../../services/login.service';
-import { Sale } from '../../models/sale';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
     selector: 'app-dash',
@@ -10,17 +10,15 @@ import { Sale } from '../../models/sale';
 })
 export class DashComponent implements OnInit {
 
-    constructor(private saleService: SalesService, private loginSerivce: LoginService) {
+    defaultStart = '2018-01-01';
+    defaultEnd = '2018-03-31';
 
+    constructor(private saleService: SalesService, private router: Router, private route: ActivatedRoute) {
     }
-    sales: Sale[];
 
     ngOnInit() {
-        this.saleService.getSellers('2018-01-01', '2018-12-31').subscribe(res => {
-            this.sales = res.data;
-            this.sales.map(sale => {
-                sale.saleDate = new Date(sale.saleDate);
-            });
-        });
+        this.router.navigate(['/dashboard'], { queryParams: { startDate: this.defaultStart, endDate: this.defaultEnd } });
+
+        this.route.queryParams.subscribe(qp => this.saleService.getSalesShared(qp['startDate'], qp['endDate']));
     }
 }
